@@ -1,0 +1,19 @@
+<a
+	md-list-item
+	[routerLink]="[
+		'/games/game/',
+		game.id,
+		game.title|slug
+	]"
+	
+>
+	<div md-line>
+		<span class="title">{{game.title}}</span>
+		<span class="total">{{game.total | duration}}</span>
+	</div>
+	<button
+		(click)="$event.preventDefault();$event.stopPropagation();remove(game)"
+		md-raised-button
+	>Remove</button>
+</a>
+<md-divider></md-divider>

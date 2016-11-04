@@ -1,0 +1,1 @@
+{"version":3,"file":"components/timer/style.css","sources":["components/timer/style.scss"],"sourcesContent":[":host /deep/ {\r\n\tfont-family: sans-serif;\r\n}"],"mappings":"AAAA,AAAW,KAAN,EAAE,IAAI,EAAE;EACZ,WAAW,EAAE,UAAW,GACxB","names":[],"sourceRoot":".."}

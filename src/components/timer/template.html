@@ -1,0 +1,14 @@
+<md-toolbar>
+	Timer
+	<md-input
+		type="text"
+		placeholder="Title"
+		#title
+		style="margin-left: auto"
+	></md-input>
+	<button
+		(click)="addGame(title.value);title.value=''"
+		md-raised-button color="primary"
+	>Add</button>
+</md-toolbar>
+<router-outlet></router-outlet>

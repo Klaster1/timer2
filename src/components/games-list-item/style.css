@@ -1,0 +1,9 @@
+:host [md-line] {
+  display: flex;
+  flex-direction: row;
+  padding-right: 1em; }
+
+.total {
+  margin-left: auto; }
+
+/*# sourceMappingURL=style.css.map */

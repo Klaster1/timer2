@@ -1,0 +1,13 @@
+<md-nav-list>
+	<games-list-item
+		*ngFor="let game of games | async"
+		(onRenamed)="renameGame($event)"
+		(onStateSet)="stopGame($event)"
+		(onRemoved)="removeGame($event)"
+		(onStarted)="startGame($event)"
+		(onStopped)="stopGame($event)"
+		[game]="game"
+		[states]="states"
+		tabindex="0"
+	></games-list-item>
+</md-nav-list>

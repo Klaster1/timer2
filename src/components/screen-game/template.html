@@ -1,0 +1,30 @@
+<a routerLink="/games">Back</a>
+<h1>{{game?.title}}</h1>
+<select
+	[ngModel]="game?.state"
+	(ngModelChange)="setGameState(game, $event)"
+>
+	<option *ngFor="let state of states" [value]="state">{{state}}</option>
+</select>
+<br>
+<button md-raised-button (click)="renameGame(game)">Rename</button>
+<button md-raised-button (click)="removeGame(game)">Remove</button>
+<button md-raised-button (click)="isRunning(game)?stopGame(game):startGame(game)">{{ isRunning(game)?'Stop':'Start' }}</button>
+<hr>
+Sessions:
+<md-list>
+	<div *ngFor="let session of game?.sessions;trackBy: session?.start">
+		<md-list-item class="session">
+			<span class="column">
+				{{ session.start|date:"MMM d, y HH:mm" }}
+			</span>
+			<span class="column">
+				{{ (session.stop?session.stop:undefined)|date:"MMM d, y HH:mm" }}
+			</span>
+			<span class="column">
+				{{ (session.stop - session.start)|duration }}
+			</span>
+		</md-list-item>
+		<md-divider></md-divider>
+	</div>
+</md-list>
