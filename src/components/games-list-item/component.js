@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core'
-import template from './template.html'
+import template from './template.html!text'
 import style from './style.css!text'
 
 @Component({

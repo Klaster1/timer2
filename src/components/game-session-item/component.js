@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core'
 import {DurationPipe} from 'a2/pipes/duration'
-import template from './template.html'
+import template from './template.html!text'
 
 @Component({
 	selector: 'game-session-item',

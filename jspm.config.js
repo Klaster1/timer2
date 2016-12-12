@@ -16,11 +16,16 @@ SystemJS.config({
   meta: {
     "*.html": {
       "loader": "text"
+    },
+    "*.js": {
+      "babelOptions": {
+        "es2015": false
+      }
     }
   },
   packages: {
     "a2": {
-      "main": "./src/main.js",
+      "main": "main.js",
       "meta": {
         "*.js": {
           "loader": "plugin-babel",

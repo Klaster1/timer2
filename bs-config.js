@@ -5,5 +5,6 @@ module.exports = {
 			1: require('connect-history-api-fallback')({ index: '/index.html', verbose: true })
 		}
 	},
+	files: ['src/a2.bundle.js', 'src/vendor.bundle.js'],
 	"open": false
 }

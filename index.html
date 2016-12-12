@@ -5,10 +5,7 @@
 	<meta name="viewport" content="width=device-width">
 	<title>ng-timer</title>
 	<base href="/">
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	<script src="jspm_packages/system.js"></script>
-	<script src="jspm.config.js"></script>
-	<script>System.import('a2/main')</script>
+	<link rel="shortcut icon" href="src/favicon.ico" type="image/x-icon">
 	<style>
 		body, html {
 			margin: 0;
@@ -18,5 +15,10 @@
 </head>
 <body>
 <timer></timer>
+<script src="jspm_packages/system.js"></script>
+<script src="jspm.config.js"></script>
+<script src="src/vendor.bundle.js"></script>
+<script src="src/a2.bundle.js"></script>
+<script>System.import('a2')</script>
 </body>
 </html>

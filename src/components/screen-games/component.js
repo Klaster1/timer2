@@ -1,5 +1,5 @@
 import {Component} from '@angular/core'
-import template from './template.html'
+import template from './template.html!text'
 import {GamesListItem} from '../games-list-item/component'
 import {GamesService} from 'a2/services/games'
 

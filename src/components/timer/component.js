@@ -1,6 +1,6 @@
 import {Component} from '@angular/core'
 // import {UIROUTER_DIRECTIVES} from 'ui-router-ng2'
-import template from './template.html'
+import template from './template.html!text'
 import {GamesService} from 'a2/services/games'
 import style from './style.css!text'
 
