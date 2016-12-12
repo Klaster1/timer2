@@ -12,7 +12,7 @@ export default class ScreenGames {
 	constructor(gamesService: GamesService) {
 		this.gamesService = gamesService
 		this.games = gamesService.games$
-			.map(games => games.reverse().map(game => Object.assign({}, game, {
+			.map(games => games.slice().reverse().map(game => Object.assign({}, game, {
 				total: game.sessions.reduce((a, s) => a + (s.stop - s.start), 0)
 			})))
 	}
