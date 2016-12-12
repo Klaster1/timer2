@@ -34,8 +34,7 @@
     "main": "./src/main.js",
     "dependencies": {
       "@angular/forms": "npm:@angular/forms@^2.1.1",
-      "@angular/http": "npm:@angular/http@^2.1.1",
-      "@angular/material": "npm:@angular/material@^2.0.0-alpha.9-3",
+      "@angular/material": "npm:@angular/material@2.0.0-alpha.11",
       "@angular/platform-browser-dynamic": "npm:@angular/platform-browser-dynamic@^2.1.1",
       "@angular/router": "npm:@angular/router@^3.1.1",
       "@ngrx/store-log-monitor": "npm:@ngrx/store-log-monitor@^3.0.2",
@@ -55,12 +54,13 @@
       "plugin-babel": "npm:systemjs-plugin-babel@^0.0.16"
     },
     "peerDependencies": {
-      "@angular/common": "npm:@angular/common@2.1.1",
+      "@angular/common": "npm:@angular/common@2.3.0",
       "@angular/compiler": "npm:@angular/compiler@^2.1.1",
-      "@angular/core": "npm:@angular/core@2.1.1",
-      "@angular/platform-browser": "npm:@angular/platform-browser@^2.1.1",
-      "@ngrx/core": "npm:@ngrx/core@^1.2.0",
-      "@ngrx/store": "npm:@ngrx/store@^2.2.1",
+      "@angular/core": "npm:@angular/core@2.3.0",
+      "@angular/http": "npm:@angular/http@^2.1.1",
+      "@angular/platform-browser": "npm:@angular/platform-browser@2.3.0",
+      "@ngrx/core": "npm:@ngrx/core@^1.1.0",
+      "@ngrx/store": "npm:@ngrx/store@^2.0.0",
       "@ngrx/store-devtools": "npm:@ngrx/store-devtools@^3.1.0",
       "assert": "npm:jspm-nodelibs-assert@^0.2.0",
       "babel-plugin-transform-decorators-legacy": "npm:babel-plugin-transform-decorators-legacy@^1.3.4",
@@ -73,16 +73,16 @@
       "os": "npm:jspm-nodelibs-os@^0.2.0",
       "path": "npm:jspm-nodelibs-path@^0.2.0",
       "process": "npm:jspm-nodelibs-process@^0.2.0",
-      "rxjs": "npm:rxjs@5.0.0-beta.12",
+      "rxjs": "npm:rxjs@5.0.0-rc.4",
       "stream": "npm:jspm-nodelibs-stream@^0.2.0",
       "string_decoder": "npm:jspm-nodelibs-string_decoder@^0.2.0",
       "timers": "npm:jspm-nodelibs-timers@^0.2.0",
       "util": "npm:jspm-nodelibs-util@^0.2.0",
       "vm": "npm:jspm-nodelibs-vm@^0.2.0",
-      "zone.js": "npm:zone.js@^0.6.26"
+      "zone.js": "npm:zone.js@^0.7.2"
     },
     "overrides": {
-      "npm:@angular/common@2.1.1": {
+      "npm:@angular/common@2.3.0": {
         "meta": {
           "src/*.js": {
             "deps": [
@@ -96,7 +96,7 @@
           "./testing": "./bundles/common-testing.umd.js"
         }
       },
-      "npm:@angular/compiler@2.1.1": {
+      "npm:@angular/compiler@2.3.0": {
         "meta": {
           "src/*.js": {
             "deps": [
@@ -110,7 +110,7 @@
           "./testing": "./bundles/compiler-testing.umd.js"
         }
       },
-      "npm:@angular/core@2.1.1": {
+      "npm:@angular/core@2.3.0": {
         "meta": {
           "src/*.js": {
             "deps": [
@@ -124,7 +124,7 @@
           "./testing": "./bundles/core-testing.umd.js"
         }
       },
-      "npm:@angular/http@2.1.1": {
+      "npm:@angular/http@2.3.0": {
         "meta": {
           "src/*.js": {
             "deps": [
@@ -138,7 +138,7 @@
           "./testing": "./bundles/http-testing.umd.js"
         }
       },
-      "npm:@angular/platform-browser-dynamic@2.1.1": {
+      "npm:@angular/platform-browser-dynamic@2.3.0": {
         "meta": {
           "src/*.js": {
             "deps": [
@@ -152,7 +152,7 @@
           "./testing": "./bundles/platform-browser-dynamic-testing.umd.js"
         }
       },
-      "npm:@angular/platform-browser@2.1.1": {
+      "npm:@angular/platform-browser@2.3.0": {
         "meta": {
           "src/*.js": {
             "deps": [
@@ -166,7 +166,7 @@
           "./testing": "./bundles/platform-browser-testing.umd.js"
         }
       },
-      "npm:@angular/router@3.1.1": {
+      "npm:@angular/router@3.3.0": {
         "meta": {
           "src/*.js": {
             "deps": [
@@ -180,7 +180,7 @@
           "./testing": "./bundles/router-testing.umd.js"
         }
       },
-      "npm:debug@2.2.0": {
+      "npm:debug@2.3.3": {
         "main": "browser.js",
         "jspmNodeConversion": false,
         "format": "cjs",
@@ -202,13 +202,13 @@
           "test.js"
         ]
       },
-      "npm:lodash@4.16.4": {
+      "npm:lodash@4.17.2": {
         "map": {
           "buffer": "@empty",
           "process": "@empty"
         }
       },
-      "npm:ms@0.7.1": {
+      "npm:ms@0.7.2": {
         "jspmNodeConversion": false,
         "format": "cjs"
       },
