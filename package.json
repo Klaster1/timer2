@@ -25,7 +25,7 @@
     "gulp": "gulp",
     "lite-server": "lite-server",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bundle:vendor": "jspm bundle \"a2/main - [a2/**/*.js] - [a2/**/*.html] - [a2/**/*.css!text] - [a2/**/*.css!]\" src/vendor.bundle.js",
+    "bundle:vendor": "jspm bundle \"a2/main - [a2/**/*.js] - [a2/**/*.html!text] - [a2/**/*.css!text] - [a2/**/*.css!]\" src/vendor.bundle.js",
     "bundle:dev": "jspm bundle \"a2/main - src/vendor.bundle.js\" src/a2.bundle.js -dw"
   },
   "author": "",
