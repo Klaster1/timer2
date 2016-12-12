@@ -36,6 +36,7 @@ export default class ScreenGame {
 		this.router.navigate(['/games'])
 	}
 	ngOnInit() {
+		this.states = this.games.states
 		this.subscription = this.route.params
 		.flatMap(params => {
 			return this.games.getByID(params.id)

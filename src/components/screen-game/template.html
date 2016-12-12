@@ -1,11 +1,16 @@
 <a routerLink="/games">Back</a>
 <h1>{{game?.title}}</h1>
-<select
+<md-select
 	[ngModel]="game?.state"
 	(ngModelChange)="setGameState(game, $event)"
 >
-	<option *ngFor="let state of states" [value]="state">{{state}}</option>
-</select>
+	<md-option
+		*ngFor="let state of states"
+		[value]="state"
+	>
+		{{state}}
+	</md-option>
+</md-select>
 <br>
 <button md-raised-button (click)="renameGame(game)">Rename</button>
 <button md-raised-button (click)="removeGame(game)">Remove</button>
