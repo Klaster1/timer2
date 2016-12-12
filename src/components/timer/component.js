@@ -1,4 +1,4 @@
-import {Component} from '@angular/core'
+import {Component, ViewEncapsulation} from '@angular/core'
 // import {UIROUTER_DIRECTIVES} from 'ui-router-ng2'
 import template from './template.html!text'
 import {GamesService} from 'a2/services/games'
@@ -7,7 +7,8 @@ import style from './style.css!text'
 @Component({
 	selector: 'timer',
 	template,
-	styles: [style]
+	styles: [style],
+	encapsulation: ViewEncapsulation.None
 	// directives: [UIROUTER_DIRECTIVES],
 	// providers: [GamesService]
 })

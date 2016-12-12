@@ -1,12 +1,12 @@
 import {Component} from '@angular/core'
 import template from './template.html!text'
-import {GamesListItem} from '../games-list-item/component'
+import style from './style.css!text'
 import {GamesService} from 'a2/services/games'
 
 @Component({
 	selector: 'screen-games',
 	template,
-	directives: [GamesListItem],
+	styles: [style]
 })
 export default class ScreenGames {
 	constructor(gamesService: GamesService) {

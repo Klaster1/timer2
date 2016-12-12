@@ -1,0 +1,1 @@
+{"version":3,"file":"style.css","sources":["components/screen-games/style.scss"],"sourcesContent":[":host {\r\n\tdisplay: flex;\r\n\tflex-direction: row;\r\n}"],"mappings":"AAAA,AAAA,KAAK,CAAC;EACL,OAAO,EAAE,IAAK;EACd,cAAc,EAAE,GAAI,GACpB","names":[],"sourceRoot":"../../.."}

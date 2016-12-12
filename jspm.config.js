@@ -78,6 +78,8 @@ SystemJS.config({
     "css": "github:systemjs/plugin-css@0.1.32",
     "events": "npm:jspm-nodelibs-events@0.2.0",
     "fs": "npm:jspm-nodelibs-fs@0.2.0",
+    "hammerjs": "npm:hammerjs@2.0.8",
+    "material-design-icons-iconfont": "npm:material-design-icons-iconfont@3.0.2",
     "ngrx-store-localstorage": "npm:ngrx-store-localstorage@0.1.5",
     "os": "npm:jspm-nodelibs-os@0.2.0",
     "path": "npm:jspm-nodelibs-path@0.2.1",

@@ -1,0 +1,33 @@
+<a
+	md-button
+	[routerLink]="[
+		'games',
+		{outlets: {
+			list: ['all'],
+			detail: null
+		}}
+	]"
+	md-tooltip="All games"
+	tooltip-position="right"
+>
+	<img [src]="assetURL('logo.svg')" alt="">
+</a>
+<button
+	md-icon-button
+	*ngFor="let state of states"
+	[md-tooltip]="state.name"
+	tooltip-position="right"
+	[routerLink]="[
+		'games',
+		{outlets: {
+			list: [state.id],
+			detail: null
+		}}
+	]"
+><md-icon>{{state.icon}}</md-icon></button>
+<button
+	md-icon-button
+	md-tooltip="Settings"
+	tooltip-position="right"
+	class="settings"
+><md-icon>settings</md-icon></button>

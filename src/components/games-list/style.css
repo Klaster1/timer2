@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column; }
+
+md-card {
+  height: 100%;
+  box-shadow: none; }
+
+[md-fab] {
+  position: absolute;
+  bottom: 24px;
+  right: 24px; }
+
+/*# sourceMappingURL=style.css.map */

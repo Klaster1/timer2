@@ -1,9 +1,10 @@
 <a
 	md-list-item
 	[routerLink]="[
-		'/games/game/',
-		game.id,
-		game.title|slug
+		'/games',
+		{outlets: {
+			detail: [game.id, game.title|slug]
+		}}
 	]"
 	
 >
@@ -12,8 +13,16 @@
 		<span class="total">{{game.total | duration}}</span>
 	</div>
 	<button
-		(click)="$event.preventDefault();$event.stopPropagation();remove(game)"
-		md-raised-button
-	>Remove</button>
+		[md-menu-trigger-for]="menu"
+		(click)="$event.preventDefault(); $event.stopPropagation()"
+		md-icon-button
+	>
+		<md-icon>more_vert</md-icon>
+	</button>
+
+	<md-menu #menu="mdMenu">
+	    <button md-menu-item (click)="remove(game)">Delete</button>
+	    <button md-menu-item (click)="rename(game)">Rename</button>
+	</md-menu>
 </a>
 <md-divider></md-divider>

@@ -6,13 +6,12 @@ import {GamesService} from 'a2/services/games'
 // import {DurationPipe} from 'a2/pipes/duration'
 import template from './template.html!text'
 import getSlug from 'speakingurl'
-// import {HOTKEY_DIRECTIVES, HotkeysService} from 'angular2-hotkeys'
 import style from './style.css!text'
 import {Router, ActivatedRoute} from '@angular/router'
 import 'rxjs/add/operator/mergeMap'
 
 @Component({
-	selector: 'screen-game',
+	selector: 'game-detail',
 	template,
 	directives: [GameSessionItem],
 	styles: [style],
@@ -22,15 +21,9 @@ import 'rxjs/add/operator/mergeMap'
 		'hotkeys': 'hotkeys'
 	}
 })
-export default class ScreenGame {
+export default class GameDetail {
 	constructor(games: GamesService, route: ActivatedRoute, router: Router){
 		Object.assign(this, {games, route, router})
-	}
-	// @HostBinding('hotkeys')
-	get hotkeys() {
-		return [
-			{'g': () => this.goToGames()}
-		]
 	}
 	goToGames() {
 		this.router.navigate(['/games'])
@@ -39,11 +32,13 @@ export default class ScreenGame {
 		this.states = this.games.states
 		this.subscription = this.route.params
 		.flatMap(params => {
+			this.state = params.state
 			return this.games.getByID(params.id)
 		})
-		.subscribe(game => {
+		.do(game => {
 			this.game = game
 		})
+		.subscribe()
 	}
 	ngOnDestroy() {
 		this.subscription.unsubscribe()

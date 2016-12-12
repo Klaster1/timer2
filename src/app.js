@@ -1,3 +1,4 @@
+import 'hammerjs'
 import 'zone.js'
 import 'reflect-metadata'
 import {NgModule} from '@angular/core'
@@ -8,8 +9,12 @@ import '@angular/material/list/list.css!'
 import '@angular/material/core/theming/prebuilt/deeppurple-amber.css!'
 import {FormsModule} from '@angular/forms'
 import ScreenGames from './components/screen-games/component'
-import ScreenGame from './components/screen-game/component'
+import GameDetail from './components/game-detail/component'
+// import ScreenGame from './components/screen-game/component'
+import GamesList from './components/games-list/component'
 import GamesListItem from './components/games-list-item/component'
+import NavigationBar from './components/navigation-bar/component'
+
 import {DurationPipe} from 'a2/pipes/duration'
 import {SlugPipe} from 'a2/pipes/slug'
 import {GamesService} from 'a2/services/games'
@@ -31,14 +36,21 @@ import {MaterialModule} from '@angular/material'
 				pathMatch: 'full'
 			},
 			{
-				path: 'games/game/:id/:slug',
-				component: ScreenGame,
-				// outlet: 'left'
-			},
-			{
 				path: 'games',
 				component: ScreenGames,
-				// outlet: 'right'
+				children: [
+					{
+						path: ':state',
+						component: GamesList,
+						outlet: 'list'
+					},
+					{
+						path: ':id/:slug',
+						component: GameDetail,
+						outlet: 'detail'
+					},
+				]
+				// outlet: 'main'
 			}
 		]),
 		StoreModule.provideStore(
@@ -50,10 +62,12 @@ import {MaterialModule} from '@angular/material'
 	declarations: [
 		Timer,
 		ScreenGames,
-		ScreenGame,
+		GameDetail,
+		GamesList,
 		GamesListItem,
 		DurationPipe,
 		SlugPipe,
+		NavigationBar,
 	],
 	providers: [
 		GamesService

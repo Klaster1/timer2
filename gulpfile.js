@@ -8,14 +8,18 @@ const history = require('connect-history-api-fallback')
 
 const paths = {
 	app: './src',
-	styles: '**/style.scss',
+	styles: '**/style.scss'
 }
 
 gulp.task('sass', function() {
 	return gulp.src(path.join(paths.app, paths.styles))
 		.pipe(sourcemaps.init())
 		.pipe(sass({
-			errLogToConsole: true
+			errLogToConsole: true,
+			includePaths: [
+				'./jspm_packages/npm/material-design-icons-iconfont@3.0.2/dist',
+				'./jspm_packages/npm/'
+			]
 		}))
 		.pipe(changed(paths.app))
 		.pipe(sourcemaps.write('.', {

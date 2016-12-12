@@ -8,9 +8,33 @@ export class GamesService {
 	constructor(store: Store) {
 		this.store = store
 		this.games$ = store.select('games')
-	}
-	get states() {
-		return ['active', 'finished', 'dropped', 'hold', 'wish']
+		this.states = [
+			{
+				id: 'active',
+				icon: 'play_circle_outline',
+				name: 'Active'
+			}, 
+			{
+				id: 'finished',
+				icon: 'check',
+				name: 'Finished'
+			}, 
+			{
+				id: 'dropped',
+				icon: 'delete',
+				name: 'Dropped'
+			}, 
+			{
+				id: 'hold',
+				icon: 'low_priority',
+				name: 'On hold'
+			}, 
+			{
+				id: 'wish',
+				icon: 'bookmark',
+				name: 'Wishlist'
+			}
+		]
 	}
 	getByID(id) {
 		return this.games$.map(games => {
