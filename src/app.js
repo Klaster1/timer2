@@ -14,6 +14,7 @@ import GameDetail from './components/game-detail/component'
 import GamesList from './components/games-list/component'
 import GamesListItem from './components/games-list-item/component'
 import NavigationBar from './components/navigation-bar/component'
+import {ScreenSettings} from './components/screen-settings/component'
 
 import {DurationPipe} from 'a2/pipes/duration'
 import {SlugPipe} from 'a2/pipes/slug'
@@ -50,7 +51,10 @@ import {MaterialModule} from '@angular/material'
 						outlet: 'detail'
 					},
 				]
-				// outlet: 'main'
+			},
+			{
+				path: 'settings',
+				component: ScreenSettings
 			}
 		]),
 		StoreModule.provideStore(
@@ -68,6 +72,7 @@ import {MaterialModule} from '@angular/material'
 		DurationPipe,
 		SlugPipe,
 		NavigationBar,
+		ScreenSettings,
 	],
 	providers: [
 		GamesService
