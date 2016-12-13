@@ -1,1 +1,0 @@
-{"version":3,"file":"style.css","sources":["components/screen-settings/style.scss"],"sourcesContent":[":host {\r\n\tmax-width: 50%;\r\n\tmargin: 0 auto;\r\n}"],"mappings":"AAAA,AAAA,KAAK,CAAC;EACL,SAAS,EAAE,GAAI;EACf,MAAM,EAAE,MAAO,GACf","names":[],"sourceRoot":"../../.."}
