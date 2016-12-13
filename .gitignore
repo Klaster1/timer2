@@ -2,3 +2,5 @@ node_modules/
 jspm_packages/
 *.sublime-*
 src/*.bundle.*
+*.css
+*.map
