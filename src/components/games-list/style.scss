@@ -1,13 +1,22 @@
+@import '@angular/material@2.0.0-alpha.11/core/style/_elevation.scss';
 :host {
 	display: flex;
     flex-direction: column;
+    position: relative;
+	@include md-elevation(1);
+	max-width: 50%;
+	margin: 0 auto;
 }
-md-card {
-	height: 100%;
-	box-shadow: none;
+md-nav-list {
+	flex: 1;
+	overflow: auto
 }
 [md-fab] {
 	position: absolute;
-	bottom: 24px;
+	top: 32px;
 	right: 24px;
+}
+md-toolbar {
+	@include md-elevation(2);
+	// z-index: 1;
 }

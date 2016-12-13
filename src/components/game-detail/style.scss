@@ -1,7 +1,7 @@
+@import '@angular/material@2.0.0-alpha.11/core/style/_elevation.scss';
 :host {
-	@import '@angular/material@2.0.0-alpha.11/core/style/_elevation.scss';
-	@include md-elevation(5);
-	z-index: 5;
+	@include md-elevation(3);
+	z-index: 3;
 	display: flex;
 	flex-direction: column;
 	position: relative;
@@ -9,19 +9,16 @@
 .column {
 	flex: 1 1;
 }
-md-card {
-	height: 100%;
-	box-shadow: none;
-    display: flex;
-    flex-direction: column;
+md-list {
+	flex: 1;
+	overflow: auto
 }
-md-card-content {
-	display: flex;
-	flex-direction: column;
-	overflow: auto;
+md-toolbar {
+	@include md-elevation(1);
+	// z-index: 1;
 }
 [md-fab] {
 	position: absolute;
-	bottom: 24px;
+	top: 32px;
 	right: 24px;
 }

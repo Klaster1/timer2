@@ -7,5 +7,11 @@
   justify-content: flex-start; }
   :host .settings {
     margin-top: auto; }
+  :host .all {
+    height: 64px; }
+    :host .all img {
+      width: 48px;
+      height: 48px;
+      margin-top: 8px; }
 
 /*# sourceMappingURL=style.css.map */

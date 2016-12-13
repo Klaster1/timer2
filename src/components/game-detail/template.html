@@ -1,18 +1,22 @@
-<md-card>
-	<md-card-title>{{game?.title}}</md-card-title>
-	<md-card-actions>
-		<a
-			md-button
-			[routerLink]="[
-				'/games',
-				{outlets: {
-				detail: null
-				}}
-			]"
-		>Back</a>
+<md-toolbar color="primary">
+	<a
+		md-icon-button
+		[routerLink]="[
+			'/games',
+			{outlets: {
+			detail: null
+			}}
+		]"
+		md-tooltip="Close"
+	>
+		<md-icon>close</md-icon>
+	</a>
+	{{game?.title}}
+</md-toolbar>
+<!-- 
 		<button md-raised-button (click)="renameGame(game)">Rename</button>
 		<button md-raised-button (click)="removeGame(game)">Remove</button>
-		<md-select
+ -->		<md-select
 			[ngModel]="game?.state"
 			placeholder="Game state"
 			(ngModelChange)="setGameState(game, $event)"
@@ -25,9 +29,6 @@
 				{{state.name}}
 			</md-option>
 		</md-select>
-	</md-card-actions>
-	<md-card-subtitle>Sessions:</md-card-subtitle>
-	<md-card-content>
 		<md-list>
 			<div *ngFor="let session of game?.sessions;trackBy: session?.start">
 				<md-list-item class="session">
@@ -44,8 +45,6 @@
 				<md-divider></md-divider>
 			</div>
 		</md-list>
-	</md-card-content>
-</md-card>
 <button
 	md-fab
 	(click)="isRunning(game)?stopGame(game):startGame(game)"

@@ -1,6 +1,4 @@
-<md-card>
-	<md-card-title>{{ state?.name }}</md-card-title>
-	<md-card-content>
+<md-toolbar color="primary">{{ state?.name }}</md-toolbar>
 		<md-nav-list>
 			<games-list-item
 				*ngFor="let game of $stateGames | async"
@@ -20,5 +18,3 @@
 	>
 		<md-icon class="md-24">add</md-icon>
 	</button>
-	</md-card-content>
-</md-card>
