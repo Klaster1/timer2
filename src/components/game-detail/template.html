@@ -16,7 +16,8 @@
 <!-- 
 		<button md-raised-button (click)="renameGame(game)">Rename</button>
 		<button md-raised-button (click)="removeGame(game)">Remove</button>
- -->		<md-select
+ -->		
+<!--  <md-select
 			[ngModel]="game?.state"
 			placeholder="Game state"
 			(ngModelChange)="setGameState(game, $event)"
@@ -28,7 +29,23 @@
 			>
 				{{state.name}}
 			</md-option>
-		</md-select>
+		</md-select> -->
+
+
+<md-button-toggle-group
+			[ngModel]="game?.state"
+			(ngModelChange)="setGameState(game, $event)"
+
+>
+	<md-button-toggle
+		*ngFor="let state of states"
+		[value]="state.id"
+	>
+		<md-icon>{{state.icon}}</md-icon>
+		{{state.name}}
+	</md-button-toggle>
+</md-button-toggle-group>
+
 		<md-list>
 			<div *ngFor="let session of game?.sessions;trackBy: session?.start">
 				<md-list-item class="session">

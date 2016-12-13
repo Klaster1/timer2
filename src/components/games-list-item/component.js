@@ -48,4 +48,8 @@ export default class GamesListItem {
 		console.debug(e, this.menu)
 		this.menu.openMenu()
 	}
+	getIcon(state) {
+		const s = this.states.find(s => s.id === state)
+		if (s) return s.icon
+	}
 }

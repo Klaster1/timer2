@@ -16,6 +16,7 @@ import {ActivatedRoute} from '@angular/router'
 export default class GamesList {
 	constructor(gamesService: GamesService, route: ActivatedRoute) {
 		Object.assign(this, {gamesService, route})
+		this.states = gamesService.states
 	}
 	ngOnInit() {
 		const $state = this.route.params

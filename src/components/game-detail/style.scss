@@ -1,7 +1,6 @@
 @import '@angular/material@2.0.0-alpha.11/core/style/_elevation.scss';
 :host {
-	@include md-elevation(3);
-	z-index: 3;
+	@include md-elevation(1);
 	display: flex;
 	flex-direction: column;
 	position: relative;
@@ -21,4 +20,7 @@ md-toolbar {
 	position: absolute;
 	top: 32px;
 	right: 24px;
+}
+md-button-toggle-group {
+	margin: auto;
 }

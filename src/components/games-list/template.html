@@ -1,20 +1,20 @@
 <md-toolbar color="primary">{{ state?.name }}</md-toolbar>
-		<md-nav-list>
-			<games-list-item
-				*ngFor="let game of $stateGames | async"
-				(onRenamed)="renameGame($event)"
-				(onStateSet)="stopGame($event)"
-				(onRemoved)="removeGame($event)"
-				(onStarted)="startGame($event)"
-				(onStopped)="stopGame($event)"
-				[game]="game"
-				[states]="states"
-				tabindex="0"
-			></games-list-item>
-		</md-nav-list>
-	<button
-		md-fab
-		(click)="addGame()"
-	>
-		<md-icon class="md-24">add</md-icon>
-	</button>
+<md-nav-list>
+	<games-list-item
+		*ngFor="let game of $stateGames | async"
+		(onRenamed)="renameGame($event)"
+		(onStateSet)="stopGame($event)"
+		(onRemoved)="removeGame($event)"
+		(onStarted)="startGame($event)"
+		(onStopped)="stopGame($event)"
+		[game]="game"
+		[states]="states"
+		tabindex="0"
+	></games-list-item>
+</md-nav-list>
+<button
+	md-fab
+	(click)="addGame()"
+>
+	<md-icon class="md-24">add</md-icon>
+</button>
