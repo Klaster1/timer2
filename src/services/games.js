@@ -11,12 +11,12 @@ export class GamesService {
 		this.states = [
 			{
 				id: 'active',
-				icon: 'play_circle_outline',
+				icon: 'play_circle_filled',
 				name: 'Active'
 			}, 
 			{
 				id: 'finished',
-				icon: 'check',
+				icon: 'check_circle',
 				name: 'Finished'
 			}, 
 			{

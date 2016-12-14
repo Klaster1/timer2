@@ -11,7 +11,7 @@
 	tooltip-position="right"
 	class="all"
 >
-	<img [src]="assetURL('logo.svg')">
+	<md-icon [svgSrc]="assetURL('logo.svg')" color="primary"></md-icon>
 </a>
 <button
 	md-icon-button
@@ -25,7 +25,7 @@
 			detail: null
 		}}
 	]"
-	[routerLinkActive]="['md-primary']"
+	[routerLinkActive]="['md-accent']"
 ><md-icon>{{state.icon}}</md-icon></button>
 <button
 	md-icon-button
@@ -33,5 +33,5 @@
 	tooltip-position="right"
 	class="settings"
 	routerLink="settings"
-	[routerLinkActive]="['md-primary']"
+	[routerLinkActive]="['md-accent']"
 ><md-icon>settings</md-icon></button>

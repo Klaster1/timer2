@@ -1,4 +1,4 @@
-<md-toolbar color="primary">
+<md-toolbar>
 	<a
 		md-icon-button
 		md-tooltip="Close"
@@ -10,8 +10,8 @@
 	<menu-game [game]="game"></menu-game>
 </md-toolbar>
 <md-button-toggle-group
-			[ngModel]="game?.state"
-			(ngModelChange)="setGameState(game, $event)"
+	[ngModel]="game?.state"
+	(ngModelChange)="setGameState(game, $event)"
 
 >
 	<md-button-toggle
@@ -22,23 +22,22 @@
 		{{state.name}}
 	</md-button-toggle>
 </md-button-toggle-group>
-
-		<md-list>
-			<div *ngFor="let session of game?.sessions;trackBy: session?.start">
-				<md-list-item class="session">
-					<span class="column">
-						{{ session.start|date:"MMM d, y HH:mm" }}
-					</span>
-					<span class="column">
-						{{ (session.stop?session.stop:undefined)|date:"MMM d, y HH:mm" }}
-					</span>
-					<span class="column">
-						{{ (session.stop - session.start)|duration }}
-					</span>
-				</md-list-item>
-				<md-divider></md-divider>
-			</div>
-		</md-list>
+<md-list>
+	<div *ngFor="let session of game?.sessions;trackBy: session?.start">
+		<md-list-item class="session">
+			<span class="column">
+				{{ session.start|date:"MMM d, y HH:mm" }}
+			</span>
+			<span class="column">
+				{{ (session.stop?session.stop:undefined)|date:"MMM d, y HH:mm" }}
+			</span>
+			<span class="column">
+				{{ (session.stop - session.start)|duration }}
+			</span>
+		</md-list-item>
+		<md-divider></md-divider>
+	</div>
+</md-list>
 <button
 	md-fab
 	(click)="isRunning(game)?stopGame(game):startGame(game)"
