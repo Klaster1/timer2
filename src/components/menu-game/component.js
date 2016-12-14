@@ -1,11 +1,12 @@
-import {Component, Input, ViewChild} from '@angular/core'
+import {Component, Input, ViewChild, ChangeDetectionStrategy} from '@angular/core'
 import {GamesService} from 'a2/services/games'
 import {MdMenuTrigger} from '@angular/material'
 import template from './template.html!text'
 
 @Component({
 	selector: 'menu-game',
-	template
+	template,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuGame {
 	@Input() game

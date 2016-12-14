@@ -1,7 +1,7 @@
 <md-toolbar>{{ state?.name }}</md-toolbar>
 <md-nav-list>
 	<games-list-item
-		*ngFor="let game of $stateGames | async"
+		*ngFor="let game of $stateGames | async; trackBy: game?.id"
 		(onRenamed)="renameGame($event)"
 		(onStateSet)="stopGame($event)"
 		(onRemoved)="removeGame($event)"
