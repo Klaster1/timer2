@@ -8,19 +8,15 @@
 >
 	<games-list-item
 		*ngFor="let game of _games; trackBy: game?.id"
-		(onRenamed)="renameGame($event)"
-		(onStateSet)="stopGame($event)"
-		(onRemoved)="removeGame($event)"
-		(onStarted)="startGame($event)"
-		(onStopped)="stopGame($event)"
 		[game]="game"
 		[states]="states"
+		(onGameClick)="gameClick($event)"
 		tabindex="0"
 	></games-list-item>
 </md-nav-list>
 <button
 	md-fab
-	(click)="addGame()"
+	(click)="addGame($event)"
 >
 	<md-icon class="md-24">add</md-icon>
 </button>

@@ -1,11 +1,7 @@
 <a
 	md-button
 	[routerLink]="[
-		'games',
-		{outlets: {
-			list: ['all'],
-			detail: null
-		}}
+		'games'
 	]"
 	md-tooltip="All games"
 	tooltip-position="right"
@@ -20,10 +16,7 @@
 	tooltip-position="right"
 	[routerLink]="[
 		'games',
-		{outlets: {
-			list: [state.id],
-			detail: null
-		}}
+		state.id
 	]"
 	[routerLinkActive]="['md-accent']"
 ><md-icon>{{state.icon}}</md-icon></button>

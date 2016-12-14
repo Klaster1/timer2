@@ -18,28 +18,12 @@ import {MdMenuTrigger} from '@angular/material'
 export default class GamesListItem {
 	@Input() game
 	@Input() states
-	@Output() onRenamed = new EventEmitter
-	@Output() onStateSet = new EventEmitter
-	@Output() onRemoved = new EventEmitter
-	@Output() onStarted = new EventEmitter
-	@Output() onStopped = new EventEmitter
-	rename(game) {
-		this.onRenamed.emit(game)
-	}
-	setState(game, state) {
-		this.onStateSet.emit({game, state})
-	}
-	remove(game) {
-		this.onRemoved.emit(game)
-	}
-	start(game) {
-		this.onStarted.emit(game)
-	}
-	stop(game) {
-		this.onStopped.emit(game)
-	}
+	@Output() onGameClick = new EventEmitter()
 	getIcon(state) {
 		const s = this.states.find(s => s.id === state)
 		if (s) return s.icon
+	}
+	gameClick(game) {
+		this.onGameClick.emit(game)
 	}
 }

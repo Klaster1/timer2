@@ -16,6 +16,7 @@ md-nav-list {
 	// top: 32px;
 	bottom: 24px;
 	right: 24px;
+	z-index: 10;
 }
 md-toolbar {
 	@include md-elevation(2);

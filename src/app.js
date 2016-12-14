@@ -18,6 +18,7 @@ import {MenuGame} from './components/menu-game/component'
 import {ButtonFile} from './components/button-file/component'
 import {FileSaverService} from 'a2/services/FileSaver'
 import {BackupService} from 'a2/services/Backup'
+import {speakingurl} from 'a2/services/speakingurl'
 
 import {DurationPipe} from 'a2/pipes/duration'
 import {SlugPipe} from 'a2/pipes/slug'
@@ -28,6 +29,7 @@ import {localStorageSync} from 'ngrx-store-localstorage'
 import {gamesReducer} from './stores/games'
 import {MaterialModule} from '@angular/material'
 import {VsFor} from 'ng2-vs-for'
+import {GameSessionItem} from 'a2/components/game-session-item/component'
 
 @NgModule({
 	imports: [
@@ -37,24 +39,21 @@ import {VsFor} from 'ng2-vs-for'
 		RouterModule.forRoot([
 			{
 				path: '',
-				redirectTo: 'games',
+				redirectTo: 'games/all',
 				pathMatch: 'full'
 			},
 			{
 				path: 'games',
+				redirectTo: 'games/all',
+				pathMatch: 'full'
+			},
+			{
+				path: 'games/:state',
 				component: ScreenGames,
-				children: [
-					{
-						path: ':state',
-						component: GamesList,
-						outlet: 'list'
-					},
-					{
-						path: ':id/:slug',
-						component: GameDetail,
-						outlet: 'detail'
-					},
-				]
+			},
+			{
+				path: 'games/:state/:id',
+				component: ScreenGames,
 			},
 			{
 				path: 'settings',
@@ -80,11 +79,13 @@ import {VsFor} from 'ng2-vs-for'
 		MenuGame,
 		VsFor,
 		ButtonFile,
+		GameSessionItem,
 	],
 	providers: [
 		GamesService,
 		FileSaverService,
 		BackupService,
+		speakingurl,
 	],
 	bootstrap: [Timer]
 })

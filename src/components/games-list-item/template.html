@@ -1,12 +1,6 @@
 <a
 	md-list-item
-	[routerLink]="[
-		'/games',
-		{outlets: {
-			detail: [game.id, game.title|slug]
-		}}
-	]"
-	
+	(click)="gameClick(game)"	
 >
 	<div md-line>
 		<md-icon class="state-icon">{{getIcon(game.state)}}</md-icon>
