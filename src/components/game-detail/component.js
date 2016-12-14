@@ -1,4 +1,12 @@
-import {Component} from '@angular/core'
+import {
+	Component,
+	HostBinding,
+	trigger,
+	state,
+	transition,
+	style,
+	animate
+} from '@angular/core'
 // import {Subject} from 'rxjs'
 import {GameSessionItem} from '../game-session-item/component'
 import {GamesService} from 'a2/services/games'
@@ -6,7 +14,7 @@ import {GamesService} from 'a2/services/games'
 // import {DurationPipe} from 'a2/pipes/duration'
 import template from './template.html!text'
 import getSlug from 'speakingurl'
-import style from './style.css!text'
+import styles from './style.css!text'
 import {Router, ActivatedRoute} from '@angular/router'
 import 'rxjs/add/operator/mergeMap'
 
@@ -14,12 +22,29 @@ import 'rxjs/add/operator/mergeMap'
 	selector: 'game-detail',
 	template,
 	directives: [GameSessionItem],
-	styles: [style],
+	styles: [styles],
 	// pipes: [DurationPipe],
 	// providers: [HotkeysService],
 	host: {
-		'hotkeys': 'hotkeys'
-	}
+		// 'hotkeys': 'hotkeys'
+		'[@routeAnimation]': 'true'
+	},
+	animations: [
+		trigger('routeAnimation', [
+			state('*', style({
+				transform: 'translateX(0%)'
+			})),
+			state('void', style({
+				transform: 'translateX(100%)'
+			})),
+			transition('void => *', [
+				animate(100)
+			]),
+			transition('* => void', [
+				animate(100)
+			]),
+		])
+	]
 })
 export default class GameDetail {
 	constructor(games: GamesService, route: ActivatedRoute, router: Router){
