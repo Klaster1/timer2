@@ -9,7 +9,6 @@
 	<games-list-item
 		*ngFor="let game of _games; trackBy: game?.id"
 		[game]="game"
-		[states]="states"
 		(onGameClick)="gameClick($event)"
 		tabindex="0"
 	></games-list-item>

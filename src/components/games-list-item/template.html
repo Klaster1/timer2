@@ -3,7 +3,7 @@
 	(click)="gameClick(game)"	
 >
 	<div md-line>
-		<md-icon class="state-icon">{{getIcon(game.state)}}</md-icon>
+		<game-state-icon [state]="game.state"></game-state-icon>
 		<span class="title">{{game.title}}</span>
 		<span class="total">{{game.total | duration}}</span>
 	</div>

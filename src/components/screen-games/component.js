@@ -56,6 +56,9 @@ export default class ScreenGames {
 	stopGame(game) {
 		this.gamesService.stopGame(game)
 	}
+	setGameState({game, state}) {
+		this.gamesService.setGameState(game, state)
+	}
 	openGame(game) {
 		this.state$.take(1).do(state => {
 			this.router.navigate(['games', state.id, game.id], {

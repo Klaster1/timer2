@@ -11,14 +11,13 @@
 </md-toolbar>
 <md-button-toggle-group
 	[ngModel]="game?.state"
-	(ngModelChange)="setGameState(game, $event)"
-
+	(ngModelChange)="changeGameState(game, $event)"
 >
 	<md-button-toggle
 		*ngFor="let state of states"
 		[value]="state.id"
 	>
-		<md-icon>{{state.icon}}</md-icon>
+		<game-state-icon [state]="state.id"></game-state-icon>
 		{{state.name}}
 	</md-button-toggle>
 </md-button-toggle-group>

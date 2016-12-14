@@ -1,5 +1,3 @@
-<!-- <router-outlet name="list"></router-outlet> -->
-<!-- <router-outlet name="detail"></router-outlet> -->
 <games-list
 	[games]="stateGames$|async"
 	[state]="state$|async"
@@ -10,4 +8,7 @@
 	*ngIf="(game$|async)"
 	[game]="game$|async"
 	(onClose)="closeGame()"
+	(onGameStart)="startGame($event)"
+	(onGameStop)="stopGame($event)"
+	(onGameStateChange)="setGameState($event)"
 ></game-detail>
