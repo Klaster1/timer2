@@ -41,13 +41,6 @@ export default class GamesList {
 	addGame(title = prompt('Title')) {
 		if (title) this.gamesService.addGame(title)
 	}
-	renameGame(game) {
-		const title = prompt('Title', game.title)
-		if (title) this.gamesService.renameGame(game, title)
-	}
-	removeGame(game) {
-		this.gamesService.removeGame(game)
-	}
 	setGameState(game, state) {
 		this.gamesService.setGameState(game, state)
 	}

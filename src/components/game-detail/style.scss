@@ -18,9 +18,13 @@ md-toolbar {
 }
 [md-fab] {
 	position: absolute;
-	top: 32px;
+	bottom: 24px;
+	// top: 32px;
 	right: 24px;
 }
 md-button-toggle-group {
 	margin: auto;
+}
+menu-game {
+	margin-left: auto;
 }

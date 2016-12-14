@@ -50,9 +50,6 @@ export default class GameDetail {
 	constructor(games: GamesService, route: ActivatedRoute, router: Router){
 		Object.assign(this, {games, route, router})
 	}
-	goToGames() {
-		this.router.navigate(['/games'])
-	}
 	ngOnInit() {
 		this.states = this.games.states
 		this.subscription = this.route.params
@@ -61,20 +58,16 @@ export default class GameDetail {
 			return this.games.getByID(params.id)
 		})
 		.do(game => {
-			this.game = game
+			if (game) {
+				this.game = game
+			} else {
+				this.close()
+			}
 		})
 		.subscribe()
 	}
 	ngOnDestroy() {
 		this.subscription.unsubscribe()
-	}
-	renameGame(game) {
-		this.games.renameGame(game, prompt('Title', game.title))
-		this.router.navigate(['/games/game', this.game.id, getSlug(this.game.title)])
-	}
-	removeGame(game) {
-		this.games.removeGame(game)
-		this.goToGames()
 	}
 	setGameState(game, state) {
 		this.games.setGameState(game, state)
@@ -89,5 +82,13 @@ export default class GameDetail {
 		if (!game) return
 		const lastSession = game.sessions[game.sessions.length - 1]
 		return lastSession && !lastSession.stop
+	}
+	close() {
+		this.router.navigate([
+			'/games',
+			{outlets: {
+				detail: null
+			}}
+		])
 	}
 }

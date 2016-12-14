@@ -1,0 +1,11 @@
+<button
+	[md-menu-trigger-for]="menu"
+	(click)="$event.preventDefault(); $event.stopPropagation()"
+	md-icon-button
+>
+	<md-icon>more_vert</md-icon>
+</button>
+<md-menu #menu="mdMenu">
+	<button md-menu-item (click)="removeGame(game)">Delete</button>
+	<button md-menu-item (click)="renameGame(game)">Rename</button>
+</md-menu>

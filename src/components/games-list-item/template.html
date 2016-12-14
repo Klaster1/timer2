@@ -13,17 +13,6 @@
 		<span class="title">{{game.title}}</span>
 		<span class="total">{{game.total | duration}}</span>
 	</div>
-	<button
-		[md-menu-trigger-for]="menu"
-		(click)="$event.preventDefault(); $event.stopPropagation()"
-		md-icon-button
-	>
-		<md-icon>more_vert</md-icon>
-	</button>
-
-	<md-menu #menu="mdMenu">
-	    <button md-menu-item (click)="remove(game)">Delete</button>
-	    <button md-menu-item (click)="rename(game)">Rename</button>
-	</md-menu>
+	<menu-game [game]="game"></menu-game>
 </a>
 <md-divider></md-divider>

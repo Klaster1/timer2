@@ -1,37 +1,14 @@
 <md-toolbar color="primary">
 	<a
 		md-icon-button
-		[routerLink]="[
-			'/games',
-			{outlets: {
-			detail: null
-			}}
-		]"
 		md-tooltip="Close"
+		(click)="close()"
 	>
 		<md-icon>close</md-icon>
 	</a>
 	{{game?.title}}
+	<menu-game [game]="game"></menu-game>
 </md-toolbar>
-<!-- 
-		<button md-raised-button (click)="renameGame(game)">Rename</button>
-		<button md-raised-button (click)="removeGame(game)">Remove</button>
- -->		
-<!--  <md-select
-			[ngModel]="game?.state"
-			placeholder="Game state"
-			(ngModelChange)="setGameState(game, $event)"
-		>
-			<md-option
-				*ngFor="let state of states"
-				[value]="state.id"
-				[id]="state.id"
-			>
-				{{state.name}}
-			</md-option>
-		</md-select> -->
-
-
 <md-button-toggle-group
 			[ngModel]="game?.state"
 			(ngModelChange)="setGameState(game, $event)"
