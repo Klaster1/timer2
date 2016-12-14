@@ -64,6 +64,7 @@ SystemJS.config({
     "@ngrx/store": "npm:@ngrx/store@2.2.1",
     "@ngrx/store-devtools": "npm:@ngrx/store-devtools@3.2.2",
     "@ngrx/store-log-monitor": "npm:@ngrx/store-log-monitor@3.0.2",
+    "FileSaver": "github:eligrey/FileSaver.js@1.3.3",
     "assert": "npm:jspm-nodelibs-assert@0.2.0",
     "babel-plugin-angular2-annotations": "npm:babel-plugin-angular2-annotations@5.1.0",
     "babel-plugin-transform-class-properties": "npm:babel-plugin-transform-class-properties@6.19.0",

@@ -1,13 +1,15 @@
 <md-card>
 	<h4>
-		<md-icon>import_export</md-icon>
-		Import/Export
+		App data
 	</h4>
-	Import
-	<input type="file">
-	<br>
+
+	<button-file (onRead)="import($event)">
+		<md-icon>archive</md-icon>
+		Import
+	</button-file>
 	<button
 		md-raised-button
+		(click)="export()"
 	>
 		<md-icon>save</md-icon>
 		Export

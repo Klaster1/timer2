@@ -7,6 +7,7 @@ export const RENAME_GAME = 'RENAME_GAME'
 export const SET_GAME_STATE = 'SET_GAME_STATE'
 export const START_GAME = 'START_GAME'
 export const STOP_GAME = 'STOP_GAME'
+export const IMPORT_GAMES = 'IMPORT_GAMES'
 
 const gameReducer = (state, action) => {
 	switch (action.type) {
@@ -57,6 +58,8 @@ export const gamesReducer = (state = [], action) => {
 			return state.map(game => gameReducer(game, action))
 		case STOP_GAME:
 			return state.map(game => gameReducer(game, action))
+		case IMPORT_GAMES:
+			return action.payload
 		default:
 			return state
 	}

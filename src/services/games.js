@@ -1,7 +1,16 @@
 import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/take'
 import {Injectable} from '@angular/core'
 import {Store} from '@ngrx/store'
-import {ADD_GAME, RENAME_GAME, REMOVE_GAME, SET_GAME_STATE, START_GAME, STOP_GAME} from 'a2/stores/games'
+import {
+	ADD_GAME,
+	RENAME_GAME,
+	REMOVE_GAME,
+	SET_GAME_STATE,
+	START_GAME,
+	STOP_GAME,
+	IMPORT_GAMES
+} from 'a2/stores/games'
 
 @Injectable()
 export class GamesService {
@@ -85,6 +94,12 @@ export class GamesService {
 			payload: {
 				id: game.id,
 			}
+		})
+	}
+	importGames(games) {
+		this.store.dispatch({
+			type: IMPORT_GAMES,
+			payload: games
 		})
 	}
 }

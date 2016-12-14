@@ -4,3 +4,4 @@ jspm_packages/
 src/*.bundle.*
 *.css
 *.map
+*.log
