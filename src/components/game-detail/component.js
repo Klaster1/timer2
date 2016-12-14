@@ -9,7 +9,7 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
 } from '@angular/core'
 import {GamesService} from 'a2/services/games'
 import template from './template.html!text'
@@ -38,7 +38,7 @@ import styles from './style.css!text'
 			]),
 		])
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	// changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class GameDetail {
 	@Input() game
@@ -46,11 +46,11 @@ export default class GameDetail {
 	@Output() onGameStart = new EventEmitter
 	@Output() onGameStop = new EventEmitter
 	@Output() onGameStateChange = new EventEmitter
-	constructor(games: GamesService){
-		Object.assign(this, {games})
+	constructor(gamesService: GamesService){
+		Object.assign(this, {gamesService})
 	}
 	ngOnInit() {
-		this.states = this.games.states
+		this.states = this.gamesService.states
 	}
 	startGame(game) {
 		this.onGameStart.emit(game)
@@ -68,5 +68,8 @@ export default class GameDetail {
 	}
 	close() {
 		this.onClose.emit()
+	}
+	get sessions() {
+		return (this.game.sessions||[]).slice().reverse()
 	}
 }
