@@ -1,7 +1,13 @@
 <md-toolbar>{{ state?.name }}</md-toolbar>
-<md-nav-list>
+<md-nav-list
+	*vsFor="
+		games;
+		size: 48;
+		let _games = vsCollection;
+	"
+>
 	<games-list-item
-		*ngFor="let game of $stateGames | async; trackBy: game?.id"
+		*ngFor="let game of _games; trackBy: game?.id"
 		(onRenamed)="renameGame($event)"
 		(onStateSet)="stopGame($event)"
 		(onRemoved)="removeGame($event)"

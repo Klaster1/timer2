@@ -2,7 +2,6 @@ import 'rxjs/add/operator/pluck'
 import 'rxjs/add/operator/combineLatest'
 import {Component} from '@angular/core'
 import template from './template.html!text'
-import {GamesListItem} from '../games-list-item/component'
 import {GamesService} from 'a2/services/games'
 import style from './style.css!text'
 import {ActivatedRoute} from '@angular/router'
@@ -10,7 +9,6 @@ import {ActivatedRoute} from '@angular/router'
 @Component({
 	selector: 'games-list',
 	template,
-	directives: [GamesListItem],
 	styles: [style]
 })
 export default class GamesList {
@@ -37,6 +35,11 @@ export default class GamesList {
 				return games.filter(game => game.state === state)
 			}
 		})
+		.do(games => this.games = games)
+		.subscribe()
+	}
+	ngOnDestroy() {
+		this.$stateGames.unsubscribe()
 	}
 	addGame(title = prompt('Title')) {
 		if (title) this.gamesService.addGame(title)

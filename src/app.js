@@ -25,6 +25,7 @@ import {compose} from '@ngrx/core/compose'
 import {localStorageSync} from 'ngrx-store-localstorage'
 import {gamesReducer} from './stores/games'
 import {MaterialModule} from '@angular/material'
+import {VsFor} from 'ng2-vs-for'
 
 @NgModule({
 	imports: [
@@ -75,6 +76,7 @@ import {MaterialModule} from '@angular/material'
 		NavigationBar,
 		ScreenSettings,
 		MenuGame,
+		VsFor,
 	],
 	providers: [
 		GamesService
