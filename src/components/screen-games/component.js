@@ -48,7 +48,18 @@ export default class ScreenGames {
 		})
 	}
 	addGame(title = prompt('Title')) {
-		if (title) this.gamesService.addGame(title)
+		if (title) {
+			this.gamesService.addGame(title)
+			this.gamesService.games$.take(1).map(games => {
+				return games[games.length - 1]
+			}).do(game => {
+				this.router.navigate(['games', 'active', game.id], {
+					queryParams: {
+						slug: this.speakingurl.getSlug(game.title)
+					}
+				})
+			}).subscribe()
+		}
 	}
 	startGame(game) {
 		this.gamesService.startGame(game)
