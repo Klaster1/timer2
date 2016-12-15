@@ -1,7 +1,43 @@
-<md-toolbar>{{ state?.name }}</md-toolbar>
+<md-toolbar>
+	<div
+		class="content"
+		[@search]="searchState"
+	>
+		<span>{{ state?.name }}</span>
+		<button
+			md-icon-button
+			class="search-button"
+			(click)="toggleSearch()"
+		>
+			<md-icon>search</md-icon>
+		</button>
+	</div>
+	<div
+		class="search"
+		[@search]="searchState"
+		(@search.done)="focus($event, input)"
+	>
+		<button
+			md-icon-button
+			(click)="toggleSearch()"
+		>
+			<md-icon>arrow_back</md-icon>
+		</button>
+		<md-input
+			#input
+			(keyup.esc)="toggleSearch('visible')"
+			(blur)="toggleSearch('visible')"
+			placeholder="Search"
+			(input)="
+				doSearch($event.target.value);
+			"
+		>
+		</md-input>
+	</div>	
+</md-toolbar>
 <md-nav-list
 	*vsFor="
-		games;
+		games$|async;
 		size: 48;
 		let _games = vsCollection;
 	"
