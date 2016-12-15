@@ -49,6 +49,7 @@
       "css": "github:systemjs/plugin-css@^0.1.32",
       "hammerjs": "npm:hammerjs@^2.0.8",
       "material-design-icons-iconfont": "npm:material-design-icons-iconfont@^3.0.2",
+      "moment": "npm:moment@^2.17.1",
       "ng2-vs-for": "npm:ng2-vs-for@^1.1.1",
       "ngrx-store-localstorage": "npm:ngrx-store-localstorage@^0.1.5",
       "reflect-metadata": "npm:reflect-metadata@^0.1.8",
@@ -213,6 +214,9 @@
           "buffer": "@empty",
           "process": "@empty"
         }
+      },
+      "npm:moment@2.17.1": {
+        "jspmNodeConversion": false
       },
       "npm:ms@0.7.2": {
         "jspmNodeConversion": false,

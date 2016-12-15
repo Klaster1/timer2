@@ -21,21 +21,14 @@
 		{{state.name}}
 	</md-button-toggle>
 </md-button-toggle-group>
-<md-list
-	*vsFor="
-		sessions;
-		size: 48;
-		let _sessions = vsCollection;
-		tagName: 'div';
-	"
->
-	<div *ngFor="let session of _sessions">
+<md-list>
+	<div *ngFor="let session of sessions$|async; trackBy: session?.start">
 		<md-list-item class="session">
 			<span class="column">
-				{{ session.start|date:"MMM d, y HH:mm" }}
+				{{ session.start|moment:'MMM D, Y HH:mm' }}
 			</span>
 			<span class="column">
-				{{ (session.stop?session.stop:undefined)|date:"MMM d, y HH:mm" }}
+				{{ (session.stop?(session.stop|moment:'MMM D, Y HH:mm'):undefined) }}
 			</span>
 			<span class="column">
 				{{ (session.stop - session.start)|duration }}

@@ -4,8 +4,8 @@
     flex-direction: column;
     position: relative;
 	@include md-elevation(1);
-	max-width: 50%;
-	margin: 0 auto;
+	// max-width: 50%;
+	// margin: 0 auto;
 }
 md-nav-list {
 	flex: 1;

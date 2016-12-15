@@ -3,8 +3,8 @@
 	flex-direction: row;
 	overflow: hidden;
 }
-games-list,
-game-detail {
+games-list, game-detail {
 	flex: 1;
+	height: 100%;
 	max-width: 50%;
 }

@@ -1,15 +1,50 @@
-import {Component} from '@angular/core'
+import 'rxjs/add/operator/share'
+import {
+	Component,
+	trigger,
+	state,
+	transition,
+	style,
+	animate
+} from '@angular/core'
 import template from './template.html!text'
-import style from './style.css!text'
+import styles from './style.css!text'
 import {GamesService} from 'a2/services/games'
 import {speakingurl} from 'a2/services/speakingurl'
-import {ActivatedRoute, Router} from '@angular/router'
+import {ActivatedRoute,	Router} from '@angular/router'
 import {Observable} from 'rxjs'
 
 @Component({
 	selector: 'screen-games',
 	template,
-	styles: [style]
+	styles: [styles],
+	animations: [
+		trigger('appear', [
+			state('*', style({
+				transform: 'translateX(0%)',
+				opacity: '1'
+			})),
+			state('void', style({
+				transform: 'translateX(100%)',
+				opacity: '0'
+			})),
+			transition('void <=> *', [
+				animate(200)
+			])
+		]),
+		trigger('move', [
+			state('opened', style({
+				transform: 'translateX(0%)'
+			})),
+			state('closed', style({
+				transform: 'translateX(50%)'
+			})),
+			transition('closed <=> opened', [
+				animate(200)
+			])
+		])
+
+	],
 })
 export default class ScreenGames {
 	constructor(speakingurl: speakingurl, gamesService: GamesService, route: ActivatedRoute, router: Router) {
@@ -29,7 +64,7 @@ export default class ScreenGames {
 				total: game.sessions.reduce((a, s) => a + (s.stop - s.start), 0)
 			})))
 
-		this.game$ = this.route.params
+		this.game$ = this.route.queryParams
 			.pluck('id')
 			.flatMap(id => {
 				if (id) {
@@ -38,6 +73,10 @@ export default class ScreenGames {
 					return Observable.of(null)
 				}
 			})
+
+		this.gameDetailState$ = this.game$.map(game => {
+			return game ? 'opened' : 'closed'
+		})
 
 		this.stateGames$ = allGames$.combineLatest(this.state$, (games, state) => {
 			if (state.id === 'all') {
@@ -53,8 +92,9 @@ export default class ScreenGames {
 			this.gamesService.games$.take(1).map(games => {
 				return games[games.length - 1]
 			}).do(game => {
-				this.router.navigate(['games', 'active', game.id], {
+				this.router.navigate(['games', 'active'], {
 					queryParams: {
+						id: game.id,
 						slug: this.speakingurl.getSlug(game.title)
 					}
 				})
@@ -72,8 +112,9 @@ export default class ScreenGames {
 	}
 	openGame(game) {
 		this.state$.take(1).do(state => {
-			this.router.navigate(['games', state.id, game.id], {
+			this.router.navigate(['games', state.id], {
 				queryParams: {
+					id: game.id,
 					slug: this.speakingurl.getSlug(game.title)
 				}
 			})

@@ -1,10 +1,12 @@
 <games-list
+	[@move]="gameDetailState$|async"
 	[games]="stateGames$|async"
 	[state]="state$|async"
 	(onGameAdd)="addGame($event)"
 	(onGameClick)="openGame($event)"
 ></games-list>
 <game-detail
+	[@appear]="true"
 	*ngIf="(game$|async)"
 	[game]="game$|async"
 	(onClose)="closeGame()"

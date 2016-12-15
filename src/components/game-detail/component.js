@@ -1,11 +1,5 @@
 import {
 	Component,
-	HostBinding,
-	trigger,
-	state,
-	transition,
-	style,
-	animate,
 	Input,
 	Output,
 	EventEmitter,
@@ -14,31 +8,14 @@ import {
 import {GamesService} from 'a2/services/games'
 import template from './template.html!text'
 import styles from './style.css!text'
+import moment from 'moment'
+import {ReplaySubject, Observable} from 'rxjs'
 
 @Component({
 	selector: 'game-detail',
 	template,
 	styles: [styles],
-	host: {
-		'[@routeAnimation]': 'true'
-	},
-	animations: [
-		trigger('routeAnimation', [
-			state('*', style({
-				transform: 'translateX(0%)'
-			})),
-			state('void', style({
-				transform: 'translateX(100%)'
-			})),
-			transition('void => *', [
-				animate(100)
-			]),
-			transition('* => void', [
-				animate(100)
-			]),
-		])
-	],
-	// changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class GameDetail {
 	@Input() game
@@ -47,10 +24,17 @@ export default class GameDetail {
 	@Output() onGameStop = new EventEmitter
 	@Output() onGameStateChange = new EventEmitter
 	constructor(gamesService: GamesService){
-		Object.assign(this, {gamesService})
+		this.states = gamesService.states
+		this._sessions = new ReplaySubject(1)
+		this.sessions$ = Observable.of(null)
+			.delay(200)
+			.flatMap(() => this._sessions)
+			.map(value => value.slice().reverse())
 	}
-	ngOnInit() {
-		this.states = this.gamesService.states
+	ngOnChanges(changes) {
+		if (changes.game) {
+			this._sessions.next(changes.game.currentValue.sessions || [])
+		}
 	}
 	startGame(game) {
 		this.onGameStart.emit(game)
@@ -70,6 +54,6 @@ export default class GameDetail {
 		this.onClose.emit()
 	}
 	get sessions() {
-		return (this.game.sessions||[]).slice().reverse()
+		return (this.game?this.game.sessions:[]).slice().reverse()
 	}
 }

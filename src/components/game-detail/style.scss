@@ -14,12 +14,10 @@ md-list {
 }
 md-toolbar {
 	@include md-elevation(1);
-	// z-index: 1;
 }
 [md-fab] {
 	position: absolute;
 	bottom: 24px;
-	// top: 32px;
 	right: 24px;
 }
 md-button-toggle-group {

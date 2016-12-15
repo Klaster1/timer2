@@ -18,6 +18,7 @@ import {FileSaverService} from 'a2/services/FileSaver'
 import {BackupService} from 'a2/services/Backup'
 import {speakingurl} from 'a2/services/speakingurl'
 
+import {MomentPipe} from 'a2/pipes/moment'
 import {DurationPipe} from 'a2/pipes/duration'
 import {SlugPipe} from 'a2/pipes/slug'
 import {GamesService} from 'a2/services/games'
@@ -51,10 +52,6 @@ import {GameStateIcon} from 'a2/components/game-state-icon/component'
 				component: ScreenGames,
 			},
 			{
-				path: 'games/:state/:id',
-				component: ScreenGames,
-			},
-			{
 				path: 'settings',
 				component: ScreenSettings
 			}
@@ -80,6 +77,7 @@ import {GameStateIcon} from 'a2/components/game-state-icon/component'
 		ButtonFile,
 		GameSessionItem,
 		GameStateIcon,
+		MomentPipe,
 	],
 	providers: [
 		GamesService,
