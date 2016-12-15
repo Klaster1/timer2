@@ -11,8 +11,9 @@ import template from './template.html!text'
 import styles from './style.css!text'
 import {GamesService} from 'a2/services/games'
 import {speakingurl} from 'a2/services/speakingurl'
+import {LayoutService} from 'a2/services/layout'
 import {ActivatedRoute,	Router} from '@angular/router'
-import {Observable} from 'rxjs'
+import {Observable, BehaviorSubject} from 'rxjs'
 
 @Component({
 	selector: 'screen-games',
@@ -20,7 +21,11 @@ import {Observable} from 'rxjs'
 	styles: [styles],
 	animations: [
 		trigger('appear', [
-			state('*', style({
+			state('opened-big', style({
+				transform: 'translateX(0%)',
+				opacity: '1'
+			})),
+			state('opened-small', style({
 				transform: 'translateX(0%)',
 				opacity: '1'
 			})),
@@ -33,22 +38,28 @@ import {Observable} from 'rxjs'
 			])
 		]),
 		trigger('move', [
-			state('opened', style({
+			state('opened-big', style({
 				transform: 'translateX(0%)'
 			})),
-			state('closed', style({
+			state('opened-small', style({
+				transform: 'translateX(-50%)'
+			})),
+			state('closed-big', style({
 				transform: 'translateX(50%)'
 			})),
-			transition('closed <=> opened', [
+			state('closed-small', style({
+				transform: 'translateX(50%)'
+			})),
+			transition('* <=> *', [
 				animate(200)
-			])
+			]),
 		])
 
 	],
 })
 export default class ScreenGames {
-	constructor(speakingurl: speakingurl, gamesService: GamesService, route: ActivatedRoute, router: Router) {
-		Object.assign(this, {speakingurl, gamesService, route, router})
+	constructor(layout: LayoutService, speakingurl: speakingurl, gamesService: GamesService, route: ActivatedRoute, router: Router) {
+		Object.assign(this, {layout, speakingurl, gamesService, route, router})
 	}
 	ngOnInit() {
 		this.state$ = this.route.params
@@ -85,6 +96,14 @@ export default class ScreenGames {
 				return games.filter(game => game.state === state.id)
 			}
 		})
+
+		this.animationState$ = Observable.combineLatest(
+			this.gameDetailState$,
+			this.layout.layout$,
+			(gameDetailState, layout) => {
+				return `${gameDetailState}-${layout}`
+			}
+		)
 	}
 	addGame(title = prompt('Title')) {
 		if (title) {

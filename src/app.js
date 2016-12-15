@@ -17,6 +17,7 @@ import {ButtonFile} from './components/button-file/component'
 import {FileSaverService} from 'a2/services/FileSaver'
 import {BackupService} from 'a2/services/Backup'
 import {speakingurl} from 'a2/services/speakingurl'
+import {LayoutService} from 'a2/services/layout'
 
 import {MomentPipe} from 'a2/pipes/moment'
 import {DurationPipe} from 'a2/pipes/duration'
@@ -84,6 +85,7 @@ import {GameStateIcon} from 'a2/components/game-state-icon/component'
 		FileSaverService,
 		BackupService,
 		speakingurl,
+		LayoutService,
 	],
 	bootstrap: [Timer]
 })

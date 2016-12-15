@@ -1,4 +1,9 @@
 :host {
 	max-width: 50%;
 	margin: 0 auto;
+
+	@media(max-width: 960px) {
+		max-width: 100%;
+		width: 100%;
+	}
 }

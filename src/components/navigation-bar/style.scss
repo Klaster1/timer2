@@ -9,18 +9,40 @@
     justify-content: flex-start;
 
     .settings {
-    	margin-top: auto;
+        margin-top: auto;
     }
     .all { 
-    	height: 64px;
-    	min-width: 64px;
-    	width: 100%;
-    	padding: 0;
+        height: 64px;
+        min-width: 64px;
+        width: 100%;
+        padding: 0;
 
-		md-icon {
-			margin-top: 8px;
-			width: 48px;
-			height: 48px;
-	    }
+        md-icon {
+            margin-top: 8px;
+            width: 48px;
+            height: 48px;
+        }
+    }
+
+    @media(max-width: 960px) {
+        flex-direction: row;
+        height: 48px;
+        width: 100%;
+
+        .all {
+            width: 48px;
+            min-width: 48px;
+            height: 48px;
+
+            md-icon {
+                margin-top: 8px;
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .settings {
+            margin-top: 0;
+            margin-left: auto;
+        }
     }
 }

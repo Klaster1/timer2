@@ -7,6 +7,10 @@ timer {
 	height: 100%;
 	font-family: sans-serif;
 
+	@media(max-width: 960px) {
+		flex-direction: column;
+	}
+
 	router-outlet {
 		flex: 0 0 0;
 

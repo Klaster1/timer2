@@ -4,6 +4,7 @@
     flex-direction: column;
     position: relative;
 	@include md-elevation(1);
+	overflow: hidden;
 }
 md-nav-list {
 	flex: 1;
