@@ -32,8 +32,11 @@ import {VsFor} from 'ng2-vs-for'
 import {GameSessionItem} from 'a2/components/game-session-item/component'
 import {GameStateIcon} from 'a2/components/game-state-icon/component'
 
+import {VirtualRepeaterModule} from 'a2/components/virtual-repeater/module'
+
 @NgModule({
 	imports: [
+		VirtualRepeaterModule,
 		BrowserModule,
 		FormsModule,
 		MaterialModule.forRoot(),
