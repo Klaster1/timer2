@@ -102,7 +102,7 @@ export class MdVirtualRepeat {
 	}
 	itemsUpdate_(changes) {
 		this.updateIndexes_()
-		this.sliceVisibleItems_()
+		this.sliceVisibleItems_(this.newStartIndex, this.newEndIndex)
 
 		let addedItems = 0, removedItems = 0
 
@@ -166,19 +166,31 @@ export class MdVirtualRepeat {
 	cleanupBlocks_() {
 
 	}
-	sliceVisibleItems_(start, end) {
+	sliceVisibleItems_(start = 0, end = 0) {
+		console.time('slice')
 		const itemsToInsert = this.items.slice(start, end)
 		this.visibleItems.splice(0, this.visibleItems.length, ...itemsToInsert)
+		console.timeEnd('slice')
 	}
 	containerUpdated() {
 		if (!this.items || !this._differVisible) return
 		this.updateIndexes_()
-		this.sliceVisibleItems_(this.newStartIndex, this.newEndIndex)
-		const changes = this._differVisible.diff(this.visibleItems)
-		if (changes) this.virtualRepeatUpdate_(changes)
+
+		if (
+				this.newStartIndex !== this.startIndex ||
+				this.newEndIndex !== this.endIndex
+		) {
+			this.sliceVisibleItems_(this.newStartIndex, this.newEndIndex)
+			const changes = this._differVisible.diff(this.visibleItems)
+			if (changes) this.virtualRepeatUpdate_(changes)
+		}
+
 	}
 	virtualRepeatUpdate_(changes) {
 		this.isVirtualRepeatUpdating_ = true
+
+		console.debug(`start: ${this.startIndex} -> ${this.newStartIndex}`)
+		console.debug(`end: ${this.endIndex} -> ${this.newEndIndex}`)
 
 		const itemsLength = this.items && this.items.length || 0
 		const lengthChanged = false
@@ -187,6 +199,9 @@ export class MdVirtualRepeat {
 
 		this._applyChanges(changes)
 
+
+		this.startIndex = this.newStartIndex
+		this.endIndex = this.newEndIndex
 		this.isVirtualRepeatUpdating_ = false
 	}
 	updateIndexes_() {
