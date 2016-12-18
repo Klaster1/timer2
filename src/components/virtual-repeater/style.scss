@@ -19,6 +19,7 @@ $virtual-repeat-scrollbar-width: 16px !default;
     right: 0;
     top: 0;
     -webkit-overflow-scrolling: touch;
+    will-change: scroll-position;
   }
 
   .md-virtual-repeat-sizer {
@@ -28,6 +29,7 @@ $virtual-repeat-scrollbar-width: 16px !default;
     margin: 0;
     padding: 0;
     width: 1px;
+    will-change: height;
   }
 
   .md-virtual-repeat-offsetter {
@@ -38,6 +40,7 @@ $virtual-repeat-scrollbar-width: 16px !default;
     position: absolute;
     right: 0;
     top: 0;
+    will-change: transform, contents;
   }
 
   &.md-orient-horizontal {

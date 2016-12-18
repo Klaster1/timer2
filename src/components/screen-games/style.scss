@@ -3,6 +3,12 @@
 	flex-direction: row;
 	overflow: hidden;
 }
+games-list {
+	will-change: transform;
+}
+game-detail {
+	will-change: transform, opacity;
+}
 games-list, game-detail {
 	flex: 1;
 	height: 100%;

@@ -2,12 +2,17 @@
 	<div
 		class="content"
 		[@search]="searchState"
+		#content
 	>
 		<span>{{ state?.name }}</span>
 		<button
 			md-icon-button
 			class="search-button"
 			(click)="toggleSearch()"
+			(mouseover)="
+				content.style.willChange = 'transform';
+				search.style.willChange = 'transform';
+			"
 		>
 			<md-icon>search</md-icon>
 		</button>
@@ -16,6 +21,7 @@
 		class="search"
 		[@search]="searchState"
 		(@search.done)="focus($event, input)"
+		#search
 	>
 		<button
 			md-icon-button
