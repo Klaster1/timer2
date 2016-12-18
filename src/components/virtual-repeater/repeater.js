@@ -167,10 +167,10 @@ export class MdVirtualRepeat {
 
 	}
 	sliceVisibleItems_(start = 0, end = 0) {
-		console.time('slice')
+		// console.time('slice')
 		const itemsToInsert = this.items.slice(start, end)
 		this.visibleItems.splice(0, this.visibleItems.length, ...itemsToInsert)
-		console.timeEnd('slice')
+		// console.timeEnd('slice')
 	}
 	containerUpdated() {
 		if (!this.items || !this._differVisible) return
@@ -189,8 +189,8 @@ export class MdVirtualRepeat {
 	virtualRepeatUpdate_(changes) {
 		this.isVirtualRepeatUpdating_ = true
 
-		console.debug(`start: ${this.startIndex} -> ${this.newStartIndex}`)
-		console.debug(`end: ${this.endIndex} -> ${this.newEndIndex}`)
+		// console.debug(`start: ${this.startIndex} -> ${this.newStartIndex}`)
+		// console.debug(`end: ${this.endIndex} -> ${this.newEndIndex}`)
 
 		const itemsLength = this.items && this.items.length || 0
 		const lengthChanged = false
