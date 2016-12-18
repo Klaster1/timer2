@@ -58,46 +58,73 @@ export class MdVirtualRepeat {
 		this.newStartIndex = 0
 		
 		this.newEndIndex = 0
-		// this.newVisibleEnd = 0
+		this.newVisibleEnd = 0
 		this.startIndex = 0
 		this.endIndex = 0
-		// this.isFirstRender = true
-		// this.isVirtualRepeatUpdating_ = false
-		// this.itemsLength = 0
-		// this.blocks = {}
-		// this.pooledBlocks = []
-	}
-	ngOnDestroy() {
-		this.cleanupBlocks_()
+		this.visibleItems = []
+		this.isVirtualRepeatUpdating_ = false
 	}
 	ngOnInit() {
 		this.sized = false
-
 	}
 	ngOnChanges(changes) {
-		console.debug(changes)
 		if ('items' in changes) {
 			const value = changes.items.currentValue
-			if (!this._differ && value) {
+			if (!this._differAll && value) {
 				try {
-					this._differ = this._differs.find(value).create(this._cdr, this.trackBy)
+					this._differAll = this._differs.find(value).create(this._cdr, this.trackBy)
 				} catch (e) {
 					throw new Error(`Cannot find a differ supporting object '${value}'`)
 				}
 			}
-			if (value && !this.isVirtualRepeatUpdating_) {
-				this.virtualRepeatUpdate_(value, changes.items.previousValue)
+			if (!this._differVisible && value) {
+				try {
+					this._differVisible = this._differs.find(this.visibleItems).create(this._cdr, this.trackBy)
+				} catch (e) {
+					throw new Error(`Cannot find a differ supporting object '${value}'`)
+				}
 			}
 		}
 	}
 	ngDoCheck() {
-		if (this._differ) {
-			const changes = this._differ.diff(this.items)
-			if (changes) this._applyChanges(changes)
+		if (this._differAll) {
+			const changes = this._differAll.diff(this.items)
+			if (changes) {
+				this.itemsUpdate_(changes)
+			}
+		}
+		if (this._differVisible && !this.isVirtualRepeatUpdating_) {
+			const changes = this._differVisible.diff(this.visibleItems)
+			if (changes) {
+				this.virtualRepeatUpdate_(changes)
+			}
+		}
+	}
+	itemsUpdate_(changes) {
+		this.updateIndexes_()
+		this.sliceVisibleItems_()
+
+		let addedItems = 0, removedItems = 0
+
+		changes.forEachAddedItem(() => addedItems += 1)
+		changes.forEachRemovedItem(() => removedItems += 1)
+
+		const lengthChange = addedItems - removedItems
+		const lengthChanged = lengthChange !== 0
+		const lengthShrank = lengthChange < 0
+		const lengthGrew = lengthChange > 0
+
+		if (lengthShrank) {
+			const previousScrollOffset = this.container.getScrollOffset()
+			this.container.resetScroll()
+			this.container.scrollTo(previousScrollOffset)
+		}
+
+		if (lengthChanged) {
+			this.container.setScrollSize(this.items.length * this.itemSize)
 		}
 	}
 	_applyChanges(changes) {
-		console.debug(changes)
 		const insertTuples = []
 		changes.forEachOperation((item, adjustedPreviousIndex, currentIndex) => {
 			if (item.previousIndex == null) {
@@ -139,36 +166,26 @@ export class MdVirtualRepeat {
 	cleanupBlocks_() {
 
 	}
-	containerUpdated() {
-		// Here be $watches
-		this.updateIndexes_()
-
-		if (
-			this.newStartIndex !== this.startIndex ||
-			this.newEndIndex !== this.endIndex ||
-			this.container.getScrollOffset() > this.container.getScrollSize()
-		) {
-			this.virtualRepeatUpdate_(this.items, this.items)
-		}
-
-		console.debug('containerUpdated')
-		console.debug(this)
+	sliceVisibleItems_(start, end) {
+		const itemsToInsert = this.items.slice(start, end)
+		this.visibleItems.splice(0, this.visibleItems.length, ...itemsToInsert)
 	}
-	virtualRepeatUpdate_(items, oldItems) {
+	containerUpdated() {
+		if (!this.items || !this._differVisible) return
+		this.updateIndexes_()
+		this.sliceVisibleItems_(this.newStartIndex, this.newEndIndex)
+		const changes = this._differVisible.diff(this.visibleItems)
+		if (changes) this.virtualRepeatUpdate_(changes)
+	}
+	virtualRepeatUpdate_(changes) {
 		this.isVirtualRepeatUpdating_ = true
 
-		const itemsLength = items && items.length || 0
+		const itemsLength = this.items && this.items.length || 0
 		const lengthChanged = false
 
-/*		if (this.items && itemsLength < this.items.length && this.container.getScrollOffset() !== 0) {
-			// this.items = items
-			const previousScrollOffset = this.container.getScrollOffset()
-			this.container.resetScroll()
-			this.container.scrollTo(previousScrollOffset)
-		}
-*/
+		this.container.setScrollSize(this.items.length * this.itemSize)
 
-		this.container.setScrollSize(items.length * this.itemSize)
+		this._applyChanges(changes)
 
 		this.isVirtualRepeatUpdating_ = false
 	}
@@ -183,12 +200,6 @@ export class MdVirtualRepeat {
 		this.newVisibleEnd = this.newStartIndex + containerLength + NUM_EXTRA
 		this.newEndIndex = Math.min(itemsLength, this.newVisibleEnd)
 		this.newStartIndex = Math.max(0, this.newStartIndex - NUM_EXTRA)
-	}
-	readItemSize_() {
-		if (this.itemSize) {
-			return
-		}
-
 	}
 	getItemSize() {
 		return this.itemSize

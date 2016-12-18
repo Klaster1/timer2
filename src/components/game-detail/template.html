@@ -22,20 +22,28 @@
 	</md-button-toggle>
 </md-button-toggle-group>
 <md-list>
-	<div *ngFor="let session of sessions$|async; trackBy: session?.start">
-		<md-list-item class="session">
-			<span class="column">
-				{{ session.start|moment:'MMM D, Y HH:mm' }}
-			</span>
-			<span class="column">
-				{{ (session.stop?(session.stop|moment:'MMM D, Y HH:mm'):undefined) }}
-			</span>
-			<span class="column">
-				{{ (session.stop - session.start)|duration }}
-			</span>
-		</md-list-item>
-		<md-divider></md-divider>
-	</div>
+	<md-virtual-repeat-container>
+		<div
+			*mdVirtualRepeat="
+				let session of sessions$|async;
+				itemSize: 48;
+				trackBy: session?.start;
+			"
+		>
+			<md-list-item class="session">
+				<span class="column">
+					{{ session.start|moment:'MMM D, Y HH:mm' }}
+				</span>
+				<span class="column">
+					{{ (session.stop?(session.stop|moment:'MMM D, Y HH:mm'):undefined) }}
+				</span>
+				<span class="column">
+					{{ (session.stop - session.start)|duration }}
+				</span>
+			</md-list-item>
+			<md-divider></md-divider>
+		</div>
+	</md-virtual-repeat-container>
 </md-list>
 <button
 	md-fab

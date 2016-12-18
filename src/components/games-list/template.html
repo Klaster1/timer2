@@ -35,14 +35,26 @@
 		</md-input>
 	</div>	
 </md-toolbar>
+<!-- <md-nav-list>
+	<games-list-item
+		*ngFor="
+			let game of games$|async;
+			trackBy: trackBy;
+		"
+		[game]="game"
+		(onGameClick)="gameClick($event)"
+		tabindex="0"
+	></games-list-item>
+</md-nav-list> -->
+
 <md-nav-list>
 	<md-virtual-repeat-container
 	>
 		<games-list-item
 			*mdVirtualRepeat="
 				let game of games$|async;
-				trackBy: game?.id;
 				itemSize: 48;
+				trackBy: trackBy;
 			"
 			[game]="game"
 			(onGameClick)="gameClick($event)"

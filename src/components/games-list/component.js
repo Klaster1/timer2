@@ -87,4 +87,7 @@ export default class GamesList {
 	doSearch(query) {
 		this.searchInput$.next(query)
 	}
+	trackBy(index, item) {
+		return item.id
+	}
 }
