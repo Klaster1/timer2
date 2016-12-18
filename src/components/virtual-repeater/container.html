@@ -1,0 +1,13 @@
+<div
+	class="md-virtual-repeat-scroller"
+	#scroller
+	(scroll)="handleScroll_($event)"
+	(wheel)="handleScroll_($event)"
+	(touchmove)="handleScroll_($event)"
+	(touchend)="handleScroll_($event)"
+>
+	<div class="md-virtual-repeat-sizer" #sizer></div>
+	<div class="md-virtual-repeat-offsetter" #offsetter>
+		<ng-content></ng-content>
+	</div>
+</div>

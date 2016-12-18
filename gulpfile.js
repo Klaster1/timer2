@@ -8,7 +8,7 @@ const history = require('connect-history-api-fallback')
 
 const paths = {
 	app: './src',
-	styles: '**/style.scss'
+	styles: '**/*style.scss'
 }
 
 gulp.task('sass', function() {

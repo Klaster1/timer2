@@ -56,4 +56,7 @@ export default class GameDetail {
 	get sessions() {
 		return (this.game?this.game.sessions:[]).slice().reverse()
 	}
+	trackBy(index, item) {
+		return item.start
+	}
 }

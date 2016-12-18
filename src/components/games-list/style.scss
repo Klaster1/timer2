@@ -37,6 +37,7 @@ md-toolbar {
 		padding-left: 16px;
 		padding-right: 16px;
 		box-sizing: border-box;
+		top: 0;
 	}
 }
 .content {
@@ -48,4 +49,7 @@ md-toolbar {
 	md-input {
 		flex: 1;
 	}
+}
+md-virtual-repeat-container {
+	height: 100%;
 }
