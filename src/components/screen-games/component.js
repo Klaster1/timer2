@@ -14,6 +14,7 @@ import {speakingurl} from 'a2/services/speakingurl'
 import {LayoutService} from 'a2/services/layout'
 import {ActivatedRoute,	Router} from '@angular/router'
 import {Observable, BehaviorSubject} from 'rxjs'
+import {HotkeysService, Hotkey} from 'angular2-hotkeys'
 
 @Component({
 	selector: 'screen-games',
@@ -58,8 +59,8 @@ import {Observable, BehaviorSubject} from 'rxjs'
 	],
 })
 export default class ScreenGames {
-	constructor(layout: LayoutService, speakingurl: speakingurl, gamesService: GamesService, route: ActivatedRoute, router: Router) {
-		Object.assign(this, {layout, speakingurl, gamesService, route, router})
+	constructor(hotkeys: HotkeysService, layout: LayoutService, speakingurl: speakingurl, gamesService: GamesService, route: ActivatedRoute, router: Router) {
+		Object.assign(this, {hotkeys, layout, speakingurl, gamesService, route, router})
 	}
 	ngOnInit() {
 		this.state$ = this.route.params
@@ -102,6 +103,40 @@ export default class ScreenGames {
 				return `${gameDetailState}-${layout}`
 			}
 		)
+
+		this.keys = [
+			new Hotkey('a', () => this.addGame(), [], 'Add game'),
+			new Hotkey('r g', () => {
+				this.game$.take(1).subscribe(game => {
+					game && this.removeGame(game)
+				})
+			}, [], 'Remove game'),
+			new Hotkey('s', () => {
+				this.game$.take(1).subscribe(game => {
+					if (!game) return
+					this.startStopGame(game)
+				})
+			}, [], 'Start/stop game'),
+			new Hotkey('c', () => this.closeGame(), [], 'Close opened game'),
+			new Hotkey('j', () => this.selectPrevGame(), [], 'Select prev game'),
+			new Hotkey('k', () => this.selectNextGame(), [], 'Select next game'),
+			...this.gamesService.states.map(state => {
+				return new Hotkey(
+					`m ${state.id[0]}`,
+					(e) => {
+						this.game$.take(1).subscribe(game => {
+							if (game) this.setGameState({game, state: state.id})
+						})
+					},
+					[],
+					`Set game state (${state.name})`
+				)
+			})
+		]
+		this.hotkeys.add(this.keys)
+	}
+	ngOnDestroy() {
+		this.hotkeys.remove(this.keys)
 	}
 	addGame(title = prompt('Title')) {
 		if (title) {
@@ -117,6 +152,9 @@ export default class ScreenGames {
 				})
 			}).subscribe()
 		}
+	}
+	removeGame(game) {
+		this.gamesService.removeGame(game)
 	}
 	startGame(game) {
 		this.gamesService.startGame(game)
@@ -141,5 +179,27 @@ export default class ScreenGames {
 		this.state$.take(1).do(state => {
 			this.router.navigate(['games', state.id])
 		}).subscribe()
+	}
+	selectPrevGame() {
+		this.stateGames$.withLatestFrom(this.game$).take(1).subscribe(([games, game]) => {
+			let index = games.indexOf(game) - 1
+			if (index < 0) index = games.length - 1
+			this.openGame(games[index])
+		})
+	}
+	selectNextGame() {
+		this.stateGames$.withLatestFrom(this.game$).take(1).subscribe(([games, game]) => {
+			let index = games.indexOf(game) + 1
+			if (index === games.length) index = 0
+			this.openGame(games[index])
+		})
+	}
+	startStopGame(game) {
+		this.isRunning(game) ? this.stopGame(game) : this.startGame(game)
+	}
+	isRunning(game) {
+		if (!game) return
+		const lastSession = game.sessions[game.sessions.length - 1]
+		return lastSession && !lastSession.stop
 	}
 }

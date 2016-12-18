@@ -1,8 +1,10 @@
-:host [md-line] {
-	display: flex;
-	flex-direction: row;
-	padding-right: 1em;
-	line-height: 24px;
+:host {
+	[md-line] {
+		display: flex;
+		flex-direction: row;
+		padding-right: 1em;
+		line-height: 24px;
+	}
 }
 .title {
     overflow: hidden;
@@ -13,4 +15,7 @@
 }
 game-state-icon {
 	margin-right: 16px;
+}
+.current {
+	background: cyan;
 }

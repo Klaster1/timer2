@@ -47,7 +47,7 @@
 </md-list>
 <button
 	md-fab
-	(click)="isRunning(game)?stopGame(game):startGame(game)"
+	(click)="startStopGame(game)"
 >
 	<md-icon class="md-24">{{ isRunning(game) ? 'pause' : 'play_arrow' }}</md-icon>
 </button>

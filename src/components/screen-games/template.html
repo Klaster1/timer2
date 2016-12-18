@@ -1,6 +1,7 @@
 <games-list
 	[@move]="animationState$|async"
 	[games]="stateGames$|async"
+	[currentGame]="game$|async"
 	[state]="state$|async"
 	(onGameAdd)="addGame($event)"
 	(onGameClick)="openGame($event)"
@@ -10,7 +11,6 @@
 	*ngIf="(game$|async)"
 	[game]="game$|async"
 	(onClose)="closeGame()"
-	(onGameStart)="startGame($event)"
-	(onGameStop)="stopGame($event)"
+	(onGameStartStop)="startStopGame($event)"
 	(onGameStateChange)="setGameState($event)"
 ></game-detail>

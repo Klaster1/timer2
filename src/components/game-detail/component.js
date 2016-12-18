@@ -20,8 +20,7 @@ import {ReplaySubject, Observable} from 'rxjs'
 export default class GameDetail {
 	@Input() game
 	@Output() onClose = new EventEmitter()
-	@Output() onGameStart = new EventEmitter
-	@Output() onGameStop = new EventEmitter
+	@Output() onGameStartStop = new EventEmitter
 	@Output() onGameStateChange = new EventEmitter
 	constructor(gamesService: GamesService){
 		this.states = gamesService.states
@@ -36,11 +35,8 @@ export default class GameDetail {
 			this._sessions.next(changes.game.currentValue.sessions || [])
 		}
 	}
-	startGame(game) {
-		this.onGameStart.emit(game)
-	}
-	stopGame(game) {
-		this.onGameStop.emit(game)
+	startStopGame(game) {
+		this.onGameStartStop.emit(game)
 	}
 	changeGameState(game, state) {
 		this.onGameStateChange.emit({game, state})

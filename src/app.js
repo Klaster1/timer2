@@ -31,6 +31,7 @@ import {MaterialModule} from '@angular/material'
 import {VsFor} from 'ng2-vs-for'
 import {GameSessionItem} from 'a2/components/game-session-item/component'
 import {GameStateIcon} from 'a2/components/game-state-icon/component'
+import {HotkeyModule} from 'angular2-hotkeys'
 
 import {VirtualRepeaterModule} from 'a2/components/virtual-repeater/module'
 
@@ -64,7 +65,8 @@ import {VirtualRepeaterModule} from 'a2/components/virtual-repeater/module'
 			compose(
 				localStorageSync(['games'], true), combineReducers
 			)({games: gamesReducer})
-		)
+		),
+		HotkeyModule.forRoot()
 	],
 	declarations: [
 		Timer,

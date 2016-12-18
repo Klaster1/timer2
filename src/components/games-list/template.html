@@ -54,6 +54,7 @@
 			[game]="game"
 			(onGameClick)="gameClick($event)"
 			tabindex="0"
+			[isCurrent]="game.id === currentGame?.id"
 		></games-list-item>
 	</md-virtual-repeat-container>
 </md-nav-list>

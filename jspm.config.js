@@ -65,6 +65,7 @@ SystemJS.config({
     "@ngrx/store-devtools": "npm:@ngrx/store-devtools@3.2.2",
     "@ngrx/store-log-monitor": "npm:@ngrx/store-log-monitor@3.0.2",
     "FileSaver": "github:eligrey/FileSaver.js@1.3.3",
+    "angular2-hotkeys": "npm:angular2-hotkeys@0.5.0",
     "assert": "npm:jspm-nodelibs-assert@0.2.0",
     "babel-plugin-angular2-annotations": "npm:babel-plugin-angular2-annotations@5.1.0",
     "babel-plugin-transform-class-properties": "npm:babel-plugin-transform-class-properties@6.19.0",
@@ -722,6 +723,12 @@ SystemJS.config({
     "npm:@angular/material@2.0.0-alpha.11": {
       "map": {
         "@types/hammerjs": "npm:@types/hammerjs@2.0.33"
+      }
+    },
+    "npm:angular2-hotkeys@0.5.0": {
+      "map": {
+        "mousetrap": "npm:mousetrap@1.6.0",
+        "@types/mousetrap": "npm:@types/mousetrap@1.5.32"
       }
     }
   }

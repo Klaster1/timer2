@@ -3,7 +3,7 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
 } from '@angular/core'
 import template from './template.html!text'
 import style from './style.css!text'
@@ -15,6 +15,7 @@ import style from './style.css!text'
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class GamesListItem {
+	@Input() isCurrent
 	@Input() game
 	@Output() onGameClick = new EventEmitter()
 	gameClick(game) {

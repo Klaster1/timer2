@@ -15,6 +15,7 @@ import {
 import template from './template.html!text'
 import styles from './style.css!text'
 import {Observable, Subject, BehaviorSubject} from 'rxjs'
+import {HotkeysService, Hotkey} from 'angular2-hotkeys'
 
 @Component({
 	selector: 'games-list',
@@ -37,10 +38,13 @@ import {Observable, Subject, BehaviorSubject} from 'rxjs'
 })
 export default class GamesList {
 	@Input() games
+	@Input() currentGame
 	@Input() state
 	@Output() onGameAdd = new EventEmitter()
 	@Output() onGameClick = new EventEmitter()
-	constructor() {
+	constructor(hotkeys: HotkeysService) {
+		Object.assign(this, {hotkeys})
+
 		this.searchState = 'hidden'
 		this.searchInput$ = new Subject
 		this.searchQuery$ = this.searchInput$
@@ -62,6 +66,15 @@ export default class GamesList {
 				}
 			}
 		)
+	}
+	ngOnInit() {
+		this.keys = [
+			new Hotkey('f', () => this.toggleSearch(), [], 'Find a game')
+		]
+		this.hotkeys.add(this.keys)
+	}
+	ngOnDestroy() {
+		this.hotkeys.remove(this.keys)
 	}
 	addGame($event) {
 		this.onGameAdd.emit()
