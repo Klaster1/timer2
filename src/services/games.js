@@ -9,7 +9,8 @@ import {
 	SET_GAME_STATE,
 	START_GAME,
 	STOP_GAME,
-	IMPORT_GAMES
+	IMPORT_GAMES,
+	PURGE_GAMES
 } from 'a2/stores/games'
 
 @Injectable()
@@ -100,6 +101,11 @@ export class GamesService {
 		this.store.dispatch({
 			type: IMPORT_GAMES,
 			payload: games
+		})
+	}
+	purgeGames() {
+		this.store.dispatch({
+			type: PURGE_GAMES
 		})
 	}
 }
