@@ -38,7 +38,7 @@
 					{{ (session.stop?(session.stop|moment:'MMM D, Y HH:mm'):undefined) }}
 				</span>
 				<span class="column">
-					{{ (session.stop - session.start)|duration }}
+					{{ session | sessionDuration | async | duration }}
 				</span>
 			</md-list-item>
 			<md-divider></md-divider>

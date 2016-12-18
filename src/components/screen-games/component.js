@@ -71,9 +71,7 @@ export default class ScreenGames {
 			})
 
 		const allGames$ = this.gamesService.games$
-			.map(games => games.slice().reverse().map(game => Object.assign({}, game, {
-				total: game.sessions.reduce((a, s) => a + (s.stop - s.start), 0)
-			})))
+			.map(games => games.slice().reverse())
 
 		this.game$ = this.route.queryParams
 			.pluck('id')

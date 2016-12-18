@@ -5,7 +5,7 @@
 	<div md-line>
 		<game-state-icon [state]="game.state"></game-state-icon>
 		<span class="title">{{game.title}}</span>
-		<span class="total">{{game.total | duration}}</span>
+		<span class="total">{{game | gameDuration | async | duration}}</span>
 	</div>
 	<menu-game [game]="game"></menu-game>
 </a>

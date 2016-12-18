@@ -20,7 +20,7 @@ import {speakingurl} from 'a2/services/speakingurl'
 import {LayoutService} from 'a2/services/layout'
 
 import {MomentPipe} from 'a2/pipes/moment'
-import {DurationPipe} from 'a2/pipes/duration'
+import {DurationPipe, GameDurationPipe, SessionDurationPipe} from 'a2/pipes/duration'
 import {SlugPipe} from 'a2/pipes/slug'
 import {GamesService} from 'a2/services/games'
 import {StoreModule, combineReducers} from '@ngrx/store'
@@ -73,6 +73,8 @@ import {VirtualRepeaterModule} from 'a2/components/virtual-repeater/module'
 		GamesList,
 		GamesListItem,
 		DurationPipe,
+		GameDurationPipe,
+		SessionDurationPipe,
 		SlugPipe,
 		NavigationBar,
 		ScreenSettings,
