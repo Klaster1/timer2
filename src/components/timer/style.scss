@@ -6,6 +6,7 @@ timer {
 	flex-direction: row;
 	height: 100%;
 	font-family: sans-serif;
+	overflow: hidden;
 
 	@media(max-width: 960px) {
 		flex-direction: column;
