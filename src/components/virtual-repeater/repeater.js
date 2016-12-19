@@ -6,6 +6,7 @@ import {
 	ViewContainerRef,
 	IterableDiffers,
 	ChangeDetectorRef,
+	ChangeDetectionStrategy
 } from '@angular/core'
 import {Observable, Subject} from 'rxjs'
 import {NUM_EXTRA} from './constants'
@@ -35,7 +36,8 @@ class RecordViewTuple {
 }
 
 @Directive({
-	selector: '[mdVirtualRepeat][mdVirtualRepeatOf]'
+	selector: '[mdVirtualRepeat][mdVirtualRepeatOf]',
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdVirtualRepeat {
 	@Input('mdVirtualRepeatOf') items
@@ -92,11 +94,9 @@ export class MdVirtualRepeat {
 			if (changes) {
 				this.itemsUpdate_(changes)
 			}
-		}
-		if (this._differVisible && !this.isVirtualRepeatUpdating_) {
-			const changes = this._differVisible.diff(this.visibleItems)
-			if (changes) {
-				this.virtualRepeatUpdate_(changes)
+			if (changes && this._differVisible) {
+				const visibleChange = this._differVisible.diff(this.visibleItems)
+				if (visibleChange) this.virtualRepeatUpdate_(visibleChange)
 			}
 		}
 	}
@@ -166,10 +166,9 @@ export class MdVirtualRepeat {
 	cleanupBlocks_() {
 
 	}
-	sliceVisibleItems_(start = 0, end = 0) {
+	sliceVisibleItems_(start, end) {
 		// console.time('slice')
-		const itemsToInsert = this.items.slice(start, end)
-		this.visibleItems.splice(0, this.visibleItems.length, ...itemsToInsert)
+		this.visibleItems = this.items.slice(start, end)
 		// console.timeEnd('slice')
 	}
 	containerUpdated() {
@@ -177,8 +176,8 @@ export class MdVirtualRepeat {
 		this.updateIndexes_()
 
 		if (
-				this.newStartIndex !== this.startIndex ||
-				this.newEndIndex !== this.endIndex
+			this.newStartIndex !== this.startIndex ||
+			this.newEndIndex !== this.endIndex
 		) {
 			this.sliceVisibleItems_(this.newStartIndex, this.newEndIndex)
 			const changes = this._differVisible.diff(this.visibleItems)

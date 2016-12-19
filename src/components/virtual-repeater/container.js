@@ -10,6 +10,7 @@ import {
 	EventEmitter,
 	Output,
 	HostListener,
+	ChangeDetectionStrategy,
 } from '@angular/core'
 import {Observable, Subject} from 'rxjs'
 import {MdVirtualRepeat} from './repeater'
@@ -20,7 +21,8 @@ import {NUM_EXTRA, ELEMENT_MAX_PIXELS} from './constants'
 @Component({
 	selector: 'md-virtual-repeat-container',
 	template,
-	styles: [style]
+	styles: [style],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdVirtualRepeatContainer {
 	@ViewChild('scroller') scroller
