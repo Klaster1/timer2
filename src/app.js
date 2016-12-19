@@ -12,7 +12,8 @@ import GamesList from './components/games-list/component'
 import GamesListItem from './components/games-list-item/component'
 import NavigationBar from './components/navigation-bar/component'
 import {ScreenSettings} from './components/screen-settings/component'
-import {MenuGame} from './components/menu-game/component'
+import {MenuGame, MenuGameTrigger} from './components/menu-game/component'
+import {MenuGameService} from './components/menu-game/service'
 import {ButtonFile} from './components/button-file/component'
 import {FileSaverService} from 'a2/services/FileSaver'
 import {BackupService} from 'a2/services/Backup'
@@ -81,6 +82,7 @@ import {VirtualRepeaterModule} from 'a2/components/virtual-repeater/module'
 		NavigationBar,
 		ScreenSettings,
 		MenuGame,
+		MenuGameTrigger,
 		VsFor,
 		ButtonFile,
 		GameSessionItem,
@@ -93,6 +95,7 @@ import {VirtualRepeaterModule} from 'a2/components/virtual-repeater/module'
 		BackupService,
 		speakingurl,
 		LayoutService,
+		MenuGameService,
 	],
 	bootstrap: [Timer]
 })

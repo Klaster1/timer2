@@ -106,7 +106,12 @@ export default class ScreenGames {
 
 		this.keys = [
 			new Hotkey('a', () => this.addGame(), [], 'Add game'),
-			new Hotkey('r g', () => {
+			new Hotkey('r', () => {
+				this.game$.take(1).subscribe(game => {
+					game && this.renameGame(game)
+				})
+			}, [], 'Rename game'),
+			new Hotkey('d g', () => {
 				this.game$.take(1).subscribe(game => {
 					game && this.removeGame(game)
 				})
@@ -118,8 +123,8 @@ export default class ScreenGames {
 				})
 			}, [], 'Start/stop game'),
 			new Hotkey('c', () => this.closeGame(), [], 'Close opened game'),
-			new Hotkey('j', () => this.selectPrevGame(), [], 'Select prev game'),
-			new Hotkey('k', () => this.selectNextGame(), [], 'Select next game'),
+			new Hotkey('j', () => this.selectNextGame(), [], 'Select next game'),
+			new Hotkey('k', () => this.selectPrevGame(), [], 'Select prev game'),
 			...this.gamesService.states.map(state => {
 				return new Hotkey(
 					`m ${state.id[0]}`,
@@ -155,6 +160,10 @@ export default class ScreenGames {
 	}
 	removeGame(game) {
 		this.gamesService.removeGame(game)
+	}
+	renameGame(game) {
+		const title = prompt('Title', game.title)
+		if (title) this.gamesService.renameGame(game, title)
 	}
 	startGame(game) {
 		this.gamesService.startGame(game)

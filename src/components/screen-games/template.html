@@ -14,3 +14,7 @@
 	(onGameStartStop)="startStopGame($event)"
 	(onGameStateChange)="setGameState($event)"
 ></game-detail>
+<menu-game
+	(onGameRemove)="removeGame($event)"
+	(onGameRename)="renameGame($event)"
+></menu-game>
