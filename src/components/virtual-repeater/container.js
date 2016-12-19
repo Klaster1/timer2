@@ -54,14 +54,12 @@ export class MdVirtualRepeatContainer {
 		return this._repeater
 	}
 	@Output() topIndexChange = new EventEmitter
-	@Input() topIndex
+	@Input() topIndex = 0
 	@HostListener('window:resize', ['$event'])
 	@HostListener('$mdResize', ['$event'])
+	@Output() sizeChange = new EventEmitter
 	onResize(e) {
 		this.sizeUpdates$.next(e)
-	}
-	ngOnInit() {
-		if (!this.topIndex) this.topIndex = 0
 	}
 	ngAfterViewInit() {
 		requestAnimationFrame(() => {
@@ -77,7 +75,6 @@ export class MdVirtualRepeatContainer {
 			this.sizeUpdates$.next(true)
 			this.$mdResizeEnable.emit()
 		})
-		
 	}
 	ngOnChanges(changes) {
 		if (changes.horizontal) {
@@ -94,9 +91,9 @@ export class MdVirtualRepeatContainer {
 	}
 	ngOnDestroy() {
 		this.sizeUpdates$.unsubscribe()
-	}
-	scrollToIndex(index) {
-		console.debug(`scrollToIndex: ${index}`)
+		this.scrollEvents.forEach(type => {
+			this.scroller.nativeElement.removeEventListener(type, this._onScroll)
+		})
 	}
 	isHorizontal() {
 		return this.horizontal
@@ -108,7 +105,7 @@ export class MdVirtualRepeatContainer {
 		const dimension = this.getDimensionName_()
 
 		this.size = size
-		this.$element.style[dimension] = `${size}px`
+		this.$element.nativeElement.style[dimension] = `${size}px`
 	}
 	unsetSize_() {
 		this.$element.style[this.getDimensionName_()] = this.oldElementSize
@@ -155,6 +152,7 @@ export class MdVirtualRepeatContainer {
 			sizerChild.style[dimension] = `${(size - (numChildren * this.maxElementPixels))}px`
 			this.sizer.nativeElement.appendChild(sizerChild)
 		}
+		this.sizeChange.emit(size)
 	}
 	autoShrink_(size) {
 		const shrinkSize = Math.max(size, this.autoShrinkMin * this.repeater.getItemSize())
@@ -237,7 +235,7 @@ export class MdVirtualRepeatContainer {
 
 		{
 			const topIndex = Math.floor(offset / itemSize)
-			if (topIndex !== this._topIndex && topIndex < this.repeater.getItemCount()) {
+			if (topIndex !== this.topIndex && topIndex < this.repeater.getItemCount()) {
 				this.topIndex = topIndex
 				this.topIndexChange.emit(topIndex)
 			}

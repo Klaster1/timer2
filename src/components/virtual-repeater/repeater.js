@@ -58,7 +58,7 @@ export class MdVirtualRepeat {
 			_cdr
 		})
 		this.newStartIndex = 0
-		
+		this.isFirstRender = true
 		this.newEndIndex = 0
 		this.newVisibleEnd = 0
 		this.startIndex = 0
@@ -87,6 +87,12 @@ export class MdVirtualRepeat {
 				}
 			}
 		}
+	}
+	ngAfterViewInit() {
+		this.container.sizeChange.take(1).subscribe(() => {
+			this.isFirstRender = false
+			this.container.scrollToIndex(this.container.topIndex)
+		})
 	}
 	ngDoCheck() {
 		if (this._differAll) {
@@ -197,7 +203,6 @@ export class MdVirtualRepeat {
 		this.container.setScrollSize(this.items.length * this.itemSize)
 
 		this._applyChanges(changes)
-
 
 		this.startIndex = this.newStartIndex
 		this.endIndex = this.newEndIndex

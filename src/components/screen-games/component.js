@@ -7,6 +7,7 @@ import {
 	style,
 	animate
 } from '@angular/core'
+import {Location} from '@angular/common'
 import template from './template.html!text'
 import styles from './style.css!text'
 import {GamesService} from 'a2/services/games'
@@ -59,10 +60,18 @@ import {HotkeysService, Hotkey} from 'angular2-hotkeys'
 	],
 })
 export default class ScreenGames {
-	constructor(hotkeys: HotkeysService, layout: LayoutService, speakingurl: speakingurl, gamesService: GamesService, route: ActivatedRoute, router: Router) {
-		Object.assign(this, {hotkeys, layout, speakingurl, gamesService, route, router})
+	constructor(location: Location, hotkeys: HotkeysService, layout: LayoutService, speakingurl: speakingurl, gamesService: GamesService, route: ActivatedRoute, router: Router) {
+		Object.assign(this, {location, hotkeys, layout, speakingurl, gamesService, route, router})
 	}
 	ngOnInit() {
+		this.route.queryParams
+			.pluck('topGame')
+			.take(1)
+			.subscribe(topGame => {
+				if (!topGame) return
+				this.topGame = topGame
+			})
+
 		this.state$ = this.route.params
 			.pluck('state')
 			.map(state => {
@@ -139,8 +148,11 @@ export default class ScreenGames {
 			})
 		]
 		this.hotkeys.add(this.keys)
+		this.topGame$ = new BehaviorSubject
+		this.topGame$.debounceTime(100).subscribe(topGame => this.updateURL(topGame))
 	}
 	ngOnDestroy() {
+		this.topGame$.unsubscribe()
 		this.hotkeys.remove(this.keys)
 	}
 	addGame(title = prompt('Title')) {
@@ -210,5 +222,12 @@ export default class ScreenGames {
 		if (!game) return
 		const lastSession = game.sessions[game.sessions.length - 1]
 		return lastSession && !lastSession.stop
+	}
+	updateURL(topGame) {
+		if (!topGame) return
+		const tree = this.router.createUrlTree(['.'], {preserveQueryParams: true})
+		tree.queryParams.topGame = topGame
+		const url = this.router.serializeUrl(tree)
+		this.location.replaceState(url)
 	}
 }

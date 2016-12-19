@@ -33,7 +33,7 @@ import {HotkeysService, Hotkey} from 'angular2-hotkeys'
 				animate(150)
 			])
 		])
-	]
+	],
 	// changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class GamesList {
@@ -42,6 +42,8 @@ export default class GamesList {
 	@Input() state
 	@Output() onGameAdd = new EventEmitter()
 	@Output() onGameClick = new EventEmitter()
+	@Input() topIndex
+	@Output() topIndexChange = new EventEmitter()
 	constructor(hotkeys: HotkeysService) {
 		Object.assign(this, {hotkeys})
 
@@ -66,6 +68,7 @@ export default class GamesList {
 				}
 			}
 		)
+		this.index = 55
 	}
 	ngOnInit() {
 		this.keys = [

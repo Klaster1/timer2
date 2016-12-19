@@ -5,6 +5,7 @@
 	[state]="state$|async"
 	(onGameAdd)="addGame($event)"
 	(onGameClick)="openGame($event)"
+	(topIndexChange)="topGame$.next($event)"
 ></games-list>
 <game-detail
 	[@appear]="animationState$|async"
