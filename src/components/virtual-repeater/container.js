@@ -91,9 +91,6 @@ export class MdVirtualRepeatContainer {
 	}
 	ngOnDestroy() {
 		this.sizeUpdates$.unsubscribe()
-		this.scrollEvents.forEach(type => {
-			this.scroller.nativeElement.removeEventListener(type, this._onScroll)
-		})
 	}
 	isHorizontal() {
 		return this.horizontal
