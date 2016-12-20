@@ -44,6 +44,8 @@
 
 <md-nav-list>
 	<md-virtual-repeat-container
+		[topIndex]="topIndex"
+		(topIndexChange)="topIndexChange.emit($event)"
 	>
 		<games-list-item
 			*mdVirtualRepeat="

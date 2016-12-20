@@ -67,10 +67,7 @@ export default class ScreenGames {
 		this.route.queryParams
 			.pluck('topGame')
 			.take(1)
-			.subscribe(topGame => {
-				if (!topGame) return
-				this.topGame = topGame
-			})
+			.subscribe(v => this.topGame = v)
 
 		this.state$ = this.route.params
 			.pluck('state')
@@ -187,14 +184,14 @@ export default class ScreenGames {
 		this.gamesService.setGameState(game, state)
 	}
 	openGame(game) {
-		this.state$.take(1).do(state => {
-			this.router.navigate(['games', state.id], {
-				queryParams: {
-					id: game.id,
-					slug: this.speakingurl.getSlug(game.title)
-				}
+		const {queryParams} = this.route.snapshot
+		const {state} = this.route.snapshot.params
+		this.router.navigate(['games', state], {
+			queryParams: Object.assign({}, queryParams, {
+				id: game.id,
+				slug: this.speakingurl.getSlug(game.title)
 			})
-		}).subscribe()
+		})
 	}
 	closeGame() {
 		this.state$.take(1).do(state => {
@@ -206,6 +203,7 @@ export default class ScreenGames {
 			let index = games.indexOf(game) - 1
 			if (index < 0) index = games.length - 1
 			this.openGame(games[index])
+			this.topGame = index
 		})
 	}
 	selectNextGame() {
@@ -213,6 +211,7 @@ export default class ScreenGames {
 			let index = games.indexOf(game) + 1
 			if (index === games.length) index = 0
 			this.openGame(games[index])
+			this.topGame = index
 		})
 	}
 	startStopGame(game) {
@@ -224,8 +223,11 @@ export default class ScreenGames {
 		return lastSession && !lastSession.stop
 	}
 	updateURL(topGame) {
-		if (!topGame) return
-		const tree = this.router.createUrlTree(['.'], {preserveQueryParams: true})
+		if (typeof topGame !== 'number') return
+		const tree = this.router.createUrlTree(
+			['games', this.route.snapshot.params.state],
+			{preserveQueryParams: true}
+		)
 		tree.queryParams.topGame = topGame
 		const url = this.router.serializeUrl(tree)
 		this.location.replaceState(url)
