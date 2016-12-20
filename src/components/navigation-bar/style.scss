@@ -2,12 +2,23 @@
 	@import 'jspm:@angular/material/core/style/_elevation';
 	@include md-elevation(1);
 
+    @import "jspm:a2/components/timer/theme";
+    $background: map-get($a2-app-theme-dark, background);
+    $foreground: map-get($a2-app-theme-dark, foreground);
+    $primary: map-get($a2-app-theme-dark, primary);
+    background: md-color($background, 'app-bar');
+
 	width: 70px;
 	flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: flex-start;
 
+    color: md-color($foreground, 'icon');
+
+    .active {
+        color: md-color($primary, 400)
+    }
     .settings {
         margin-top: auto;
     }

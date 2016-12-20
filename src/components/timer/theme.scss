@@ -3,3 +3,4 @@ $a2-app-primary: md-palette($md-lime);
 $a2-app-accent: md-palette($md-amber, A200, A100, A400);
 $a2-app-warn: md-palette($md-red);
 $a2-app-theme: md-light-theme($a2-app-primary, $a2-app-accent, $a2-app-warn);
+$a2-app-theme-dark: md-dark-theme($a2-app-primary, $a2-app-accent, $a2-app-warn);

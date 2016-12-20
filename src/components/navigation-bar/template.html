@@ -1,13 +1,14 @@
 <a
 	md-button
 	[routerLink]="[
-		'games'
+		'games', 'all'
 	]"
 	[md-tooltip]="tooltipText('All')|async"
 	[tooltip-position]="tooltipPosition$|async"
 	class="all"
+	[routerLinkActive]="['active']"
 >
-	<md-icon [svgSrc]="assetURL('logo.svg')" color="primary"></md-icon>
+	<md-icon [svgSrc]="assetURL('logo.svg')"></md-icon>
 </a>
 <button
 	md-icon-button
@@ -18,7 +19,7 @@
 		'games',
 		state.id
 	]"
-	[routerLinkActive]="['md-accent']"
+	[routerLinkActive]="['active']"
 ><game-state-icon [state]="state.id"></game-state-icon></button>
 <button
 	md-icon-button
@@ -26,5 +27,5 @@
 	[tooltip-position]="tooltipPosition$|async"
 	class="settings"
 	routerLink="settings"
-	[routerLinkActive]="['md-accent']"
+	[routerLinkActive]="['active']"
 ><md-icon>settings</md-icon></button>
