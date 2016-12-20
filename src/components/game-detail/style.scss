@@ -1,4 +1,4 @@
-@import '@angular/material@2.0.0-alpha.11/core/style/_elevation.scss';
+@import 'jspm:@angular/material/core/style/_elevation';
 :host {
 	@include md-elevation(1);
 	display: flex;

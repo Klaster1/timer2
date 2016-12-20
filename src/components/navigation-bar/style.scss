@@ -1,5 +1,5 @@
 :host {
-	@import '@angular/material@2.0.0-alpha.11/core/style/_elevation.scss';
+	@import 'jspm:@angular/material/core/style/_elevation';
 	@include md-elevation(1);
 
 	width: 70px;

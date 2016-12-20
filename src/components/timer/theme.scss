@@ -1,9 +1,5 @@
-@import '@angular/material@2.0.0-alpha.11/core/theming/all-theme';
-@include md-core();
-
+@import 'jspm:@angular/material/core/theming/_theming';
 $a2-app-primary: md-palette($md-lime);
 $a2-app-accent: md-palette($md-amber, A200, A100, A400);
 $a2-app-warn: md-palette($md-red);
 $a2-app-theme: md-light-theme($a2-app-primary, $a2-app-accent, $a2-app-warn);
-
-@include angular-material-theme($a2-app-theme);

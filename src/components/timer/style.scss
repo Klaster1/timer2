@@ -1,6 +1,14 @@
-@import 'theme.scss';
-$material-design-icons-font-path: 'jspm_packages/npm/material-design-icons-iconfont@3.0.2/dist/fonts/';
-@import 'material-design-icons-iconfont@3.0.2/dist/material-design-icons.scss';
+// Theme
+// @import 'theme.scss';
+@import 'theme'; // My colors and theme
+@import 'jspm:@angular/material/core/theming/all-theme'; // Mixins to theme MD components
+@include md-core(); // Apply not themed MD styles
+@include angular-material-theme($a2-app-theme); // Apply colors to MD theme
+
+// Icons
+$material-design-icons-font-path: fixSlashes(jspm_resolve('material-design-icons-iconfont/dist/fonts/')+'/');
+@import 'jspm:material-design-icons-iconfont/dist/material-design-icons';
+
 timer {
 	display: flex;
 	flex-direction: row;

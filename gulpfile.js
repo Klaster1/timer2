@@ -5,6 +5,7 @@ const sourcemaps = require('gulp-sourcemaps')
 const changed = require('gulp-changed')
 const connect = require('gulp-connect')
 const history = require('connect-history-api-fallback')
+const sassJspm = require('sass-jspm-importer')
 
 const paths = {
 	app: './src',
@@ -16,10 +17,15 @@ gulp.task('sass', function() {
 		.pipe(sourcemaps.init())
 		.pipe(sass({
 			errLogToConsole: true,
-			includePaths: [
-				'./jspm_packages/npm/material-design-icons-iconfont@3.0.2/dist',
-				'./jspm_packages/npm/'
-			]
+			functions: Object.assign(
+				sassJspm.resolve_function('/jspm_packages/'),
+				{
+					fixSlashes(exp) {
+						return new sass.compiler.types.String(exp.getValue().replace(/\\/g, '\/'))
+					}
+				}
+			),
+			importer: sassJspm.importer
 		}))
 		.pipe(changed(paths.app))
 		.pipe(sourcemaps.write('.', {
