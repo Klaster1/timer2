@@ -17,5 +17,7 @@ game-state-icon {
 	margin-right: 16px;
 }
 .current {
-	background: cyan;
+	@import "jspm:a2/components/timer/theme";
+	$background: map-get($a2-app-theme, background);
+	background: md-color($background, 'hover');
 }
