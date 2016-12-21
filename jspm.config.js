@@ -51,15 +51,15 @@ SystemJS.config({
     "github:*/*.json"
   ],
   map: {
-    "@angular/common": "npm:@angular/common@2.3.0",
+    "@angular/common": "npm:@angular/common@2.4.0",
     "@angular/compiler": "npm:@angular/compiler@2.3.0",
-    "@angular/core": "npm:@angular/core@2.3.0",
-    "@angular/forms": "npm:@angular/forms@2.3.0",
+    "@angular/core": "npm:@angular/core@2.4.0",
+    "@angular/forms": "npm:@angular/forms@2.4.0",
     "@angular/http": "npm:@angular/http@2.3.0",
     "@angular/material": "npm:@angular/material@2.0.0-alpha.11",
-    "@angular/platform-browser": "npm:@angular/platform-browser@2.3.0",
+    "@angular/platform-browser": "npm:@angular/platform-browser@2.4.0",
     "@angular/platform-browser-dynamic": "npm:@angular/platform-browser-dynamic@2.3.0",
-    "@angular/router": "npm:@angular/router@3.3.0",
+    "@angular/router": "npm:@angular/router@3.4.0",
     "@ngrx/core": "npm:@ngrx/core@1.2.0",
     "@ngrx/store": "npm:@ngrx/store@2.2.1",
     "@ngrx/store-devtools": "npm:@ngrx/store-devtools@3.2.2",
@@ -83,13 +83,12 @@ SystemJS.config({
     "hammerjs": "npm:hammerjs@2.0.8",
     "material-design-icons-iconfont": "npm:material-design-icons-iconfont@3.0.2",
     "moment": "npm:moment@2.17.1",
-    "ng2-vs-for": "npm:ng2-vs-for@1.1.1",
     "ngrx-store-localstorage": "npm:ngrx-store-localstorage@0.1.5",
     "os": "npm:jspm-nodelibs-os@0.2.0",
     "path": "npm:jspm-nodelibs-path@0.2.1",
     "process": "npm:jspm-nodelibs-process@0.2.0",
     "reflect-metadata": "npm:reflect-metadata@0.1.8",
-    "rxjs": "npm:rxjs@5.0.0-rc.4",
+    "rxjs": "npm:rxjs@5.0.1",
     "speakingurl": "npm:speakingurl@10.0.0",
     "stream": "npm:jspm-nodelibs-stream@0.2.0",
     "string_decoder": "npm:jspm-nodelibs-string_decoder@0.2.0",
@@ -98,7 +97,7 @@ SystemJS.config({
     "util": "npm:jspm-nodelibs-util@0.2.1",
     "uuid": "npm:uuid@2.0.3",
     "vm": "npm:jspm-nodelibs-vm@0.2.0",
-    "zone.js": "npm:zone.js@0.7.2"
+    "zone.js": "npm:zone.js@0.7.4"
   },
   packages: {
     "npm:babel-plugin-angular2-annotations@5.1.0": {
@@ -603,11 +602,6 @@ SystemJS.config({
         "esutils": "npm:esutils@2.0.2"
       }
     },
-    "npm:rxjs@5.0.0-rc.4": {
-      "map": {
-        "symbol-observable": "npm:symbol-observable@1.0.4"
-      }
-    },
     "npm:regenerator-transform@0.9.8": {
       "map": {
         "babel-types": "npm:babel-types@6.20.0",
@@ -729,6 +723,11 @@ SystemJS.config({
       "map": {
         "mousetrap": "npm:mousetrap@1.6.0",
         "@types/mousetrap": "npm:@types/mousetrap@1.5.32"
+      }
+    },
+    "npm:rxjs@5.0.1": {
+      "map": {
+        "symbol-observable": "npm:symbol-observable@1.0.4"
       }
     }
   }

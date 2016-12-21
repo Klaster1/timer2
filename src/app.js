@@ -29,7 +29,6 @@ import {compose} from '@ngrx/core/compose'
 import {localStorageSync} from 'ngrx-store-localstorage'
 import {gamesReducer} from './stores/games'
 import {MaterialModule} from '@angular/material'
-import {VsFor} from 'ng2-vs-for'
 import {GameSessionItem} from 'a2/components/game-session-item/component'
 import {GameStateIcon} from 'a2/components/game-state-icon/component'
 import {HotkeyModule} from 'angular2-hotkeys'
@@ -83,7 +82,6 @@ import {VirtualRepeaterModule} from 'a2/components/virtual-repeater/module'
 		ScreenSettings,
 		MenuGame,
 		MenuGameTrigger,
-		VsFor,
 		ButtonFile,
 		GameSessionItem,
 		GameStateIcon,
