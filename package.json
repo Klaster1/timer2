@@ -18,6 +18,7 @@
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-webserver": "^0.9.1",
+    "http2": "^3.3.6",
     "jspm": "^0.17.0-beta.22",
     "lite-server": "^2.2.2",
     "sass-jspm-importer": "0.0.6"
@@ -235,4 +236,3 @@
   },
   "license": "ISC"
 }
-
