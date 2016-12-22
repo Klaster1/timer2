@@ -6,15 +6,49 @@
 	<title>ng-timer</title>
 	<base href="/">
 	<link rel="shortcut icon" href="src/favicon.ico" type="image/x-icon">
-	<style>
-		body, html {
-			margin: 0;
-			padding: 0;
-		}
-	</style>
 </head>
 <body>
-<timer></timer>
+<timer>
+	<img
+		class="loader"
+		src="src/favicon.ico"
+		alt="Timer"
+	>
+</timer>
+<style>
+	body, html {
+		margin: 0;
+		padding: 0;
+	}
+	.loader {
+		width: 32px;
+		height: 32px;
+		position: fixed;
+		top: calc(50% - 16px);
+		left: calc(50% - 16px);
+		animation: heartbeat 1s infinite;
+	}
+	@keyframes heartbeat {
+		0% {
+			transform: scale(.75)
+		}
+		20% {
+			transform: scale(1)
+		}
+		40% {
+			transform: scale(.75)
+		}
+		60% {
+			transform: scale(1)
+		}
+		80% {
+			transform: scale(.75)
+		}
+		100% {
+			transform: scale(.75)
+		}
+	}
+</style>
 <script src="jspm_packages/system.js"></script>
 <script src="jspm.config.js"></script>
 <script src="src/vendor.bundle.js"></script>
