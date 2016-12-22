@@ -17,15 +17,18 @@
     "gulp-sourcemaps": "^1.6.0",
     "jspm": "^0.17.0-beta.22",
     "lite-server": "^2.2.2",
-    "sass-jspm-importer": "0.0.6"
+    "sass-jspm-importer": "0.0.6",
+    "sw-precache": "^4.2.3"
   },
   "scripts": {
     "jspm": "jspm",
     "gulp": "gulp",
     "lite-server": "lite-server",
+    "sw-precache": "sw-precache",
     "test": "echo \"Error: no test specified\" && exit 1",
     "bundle:vendor": "jspm bundle \"a2/main - [a2/**/*.js] - [a2/**/*.html!text] - [a2/**/*.css!text] - [a2/**/*.css!]\" src/vendor.bundle.js",
-    "bundle:dev": "jspm bundle \"a2/main - src/vendor.bundle.js\" src/a2.bundle.js -dw"
+    "bundle:dev": "jspm bundle \"a2/main - src/vendor.bundle.js\" src/a2.bundle.js -dw",
+    "build:serviceworker": "sw-precache -- --config=\"./sw.config.js\" --verbose"
   },
   "author": "Klaster_1 <klaster1@gmail.com>",
   "jspm": {

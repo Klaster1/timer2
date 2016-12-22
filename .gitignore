@@ -5,3 +5,4 @@ src/*.bundle.*
 *.css
 *.map
 *.log
+service-worker.js
