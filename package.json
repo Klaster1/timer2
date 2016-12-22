@@ -1,8 +1,8 @@
 {
   "name": "a2",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Angular version of timer",
+  "main": "src/main.js",
   "dependencies": {},
   "devDependencies": {
     "angular-cli": "^1.0.0-beta.10",
@@ -234,5 +234,9 @@
       }
     }
   },
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Klaster1/timer2.git"
+  }
 }
