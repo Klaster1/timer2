@@ -26,6 +26,11 @@ SystemJS.config({
   packages: {
     "a2": {
       "main": "main.js",
+      "map": {
+        "env": {
+          "~production": "a2/env.dev.js"
+        }
+      },
       "meta": {
         "*.js": {
           "loader": "plugin-babel",
