@@ -3,8 +3,6 @@ const sass = require('gulp-sass')
 const path = require('path')
 const sourcemaps = require('gulp-sourcemaps')
 const changed = require('gulp-changed')
-const connect = require('gulp-connect')
-const history = require('connect-history-api-fallback')
 const sassJspm = require('sass-jspm-importer')
 
 const paths = {
@@ -38,14 +36,4 @@ gulp.task('watch-styles', function() {
 	gulp.watch(path.join(paths.app, paths.styles), ['sass'])
 })
 
-gulp.task('connect', function() {
-  connect.server({
-    root: './',
-    livereload: true,
-    middleware: function(connect, opt) {
-      return [ history() ];
-    }
-  });
-})
-
-gulp.task('default', ['watch-styles', 'connect'])
+gulp.task('default', ['watch-styles'])
