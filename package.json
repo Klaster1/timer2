@@ -29,7 +29,7 @@
     "bundle:vendor": "jspm bundle \"a2 - [a2/**/*.js] - [a2/**/*.html!text] - [a2/**/*.css!text] - [a2/**/*.css!]\" src/vendor.bundle.js",
     "bundle:dev": "jspm bundle \"a2 - src/vendor.bundle.js\" src/a2.bundle.js -dw",
     "bundle:prod": "jspm bundle \"a2 - src/vendor.bundle.js\" src/a2.bundle.js",
-    "build:serviceworker": "sw-precache -- --config=\"./sw.config.js\" --verbose"
+    "build:serviceworker": "sw-precache --config=sw.config.js --verbose"
   },
   "author": "Klaster_1 <klaster1@gmail.com>",
   "jspm": {
