@@ -21,4 +21,10 @@ export default class GamesListItem {
 	gameClick(game) {
 		this.onGameClick.emit(game)
 	}
+	ngOnChanges(changes) {
+		if ('game' in changes) {
+			const game = changes.game.currentValue
+			this.isRunning = game && game.sessions.length && !game.sessions[game.sessions.length - 1].stop
+		}
+	}
 }

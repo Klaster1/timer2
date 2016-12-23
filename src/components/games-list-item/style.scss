@@ -1,3 +1,4 @@
+@import "jspm:a2/components/timer/theme";
 :host {
 	[md-line] {
 		display: flex;
@@ -17,7 +18,8 @@ game-state-icon {
 	margin-right: 16px;
 }
 .current {
-	@import "jspm:a2/components/timer/theme";
-	$background: map-get($a2-app-theme, background);
-	background: md-color($background, 'hover');
+	background: md-color(map-get($a2-app-theme, primary), 100);
+}
+.running {
+	color: md-color(map-get($a2-app-theme, accent), 900);
 }
