@@ -26,10 +26,12 @@
 		<button
 			md-icon-button
 			(click)="toggleSearch()"
+			[tabindex]="searchState === 'hidden' ? -1 : 0"
 		>
 			<md-icon>arrow_back</md-icon>
 		</button>
 		<md-input
+			tabindex="-1"
 			#input
 			(keyup.esc)="toggleSearch('visible')"
 			(blur)="toggleSearch('visible')"
