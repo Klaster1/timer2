@@ -79,6 +79,8 @@ export class GamesList {
 		this.hotkeys.add(this.keys)
 	}
 	ngOnDestroy() {
+		this.gamesInput$.unsubscribe()
+		this.searchInput$.unsubscribe()
 		this.hotkeys.remove(this.keys)
 	}
 	addGame($event) {
