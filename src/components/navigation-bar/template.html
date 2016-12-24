@@ -3,8 +3,8 @@
 	[routerLink]="[
 		'games', 'all'
 	]"
-	[md-tooltip]="tooltipText('All')|async"
-	[tooltip-position]="tooltipPosition$|async"
+	[mdTooltip]="tooltipText('All')|async"
+	[mdTooltipPosition]="tooltipPosition$|async"
 	class="all"
 	[routerLinkActive]="['active']"
 >
@@ -13,8 +13,8 @@
 <button
 	md-icon-button
 	*ngFor="let state of states"
-	[md-tooltip]="tooltipText(state.name)|async"
-	[tooltip-position]="tooltipPosition$|async"
+	[mdTooltip]="tooltipText(state.name)|async"
+	[mdTooltipPosition]="tooltipPosition$|async"
 	[routerLink]="[
 		'games',
 		state.id
@@ -23,8 +23,8 @@
 ><game-state-icon [state]="state.id"></game-state-icon></button>
 <button
 	md-icon-button
-	[md-tooltip]="tooltipText('Settings')|async"
-	[tooltip-position]="tooltipPosition$|async"
+	[mdTooltip]="tooltipText('Settings')|async"
+	[mdTooltipPosition]="tooltipPosition$|async"
 	class="settings"
 	routerLink="settings"
 	[routerLinkActive]="['active']"
