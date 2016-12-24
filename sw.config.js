@@ -1,7 +1,7 @@
 module.exports = {
 	cacheId: 'timer',
 	staticFileGlobs: [
-		'src/*.bundle.js',
+		'dist/*.bundle.js',
 		'src/**/*.svg',
 		'index.html',
 		'src/*.ico',
