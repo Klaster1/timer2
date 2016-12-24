@@ -10,12 +10,14 @@ import {
 	state,
 	transition,
 	style,
-	animate
+	animate,
+	ChangeDetectorRef
 } from '@angular/core'
 import template from './template.html!text'
 import styles from './style.css!text'
 import {Observable, Subject, BehaviorSubject} from 'rxjs'
 import {HotkeysService, Hotkey} from 'angular2-hotkeys'
+import {DurationService} from 'a2/services/duration'
 
 @Component({
 	selector: 'games-list',
@@ -36,7 +38,7 @@ import {HotkeysService, Hotkey} from 'angular2-hotkeys'
 	],
 	// changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class GamesList {
+export class GamesList {
 	@Input() games
 	@Input() currentGame
 	@Input() state
@@ -105,5 +107,30 @@ export default class GamesList {
 	}
 	trackBy(index, item) {
 		return item.id
+	}
+}
+
+@Component({
+	selector: 'games-duration',
+	template: '{{ duration }}',
+	changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class GamesDuration {
+	@Input() games
+	constructor(cdr: ChangeDetectorRef, durationService: DurationService) {
+		Object.assign(this, {cdr, durationService})
+	}
+	ngOnChanges(changes) {
+		if ('games' in changes && changes.games.currentValue) {
+			this.durationService.gamesDuration(changes.games.currentValue)
+			.map(duration => this.durationService.format(duration))
+			.map(value => value ? `(${value})` : '')
+			.do(value => {
+				this.duration = value
+				this.cdr.markForCheck()
+				this.cdr.detectChanges()
+			})
+			.subscribe()
+		}
 	}
 }

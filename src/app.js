@@ -8,7 +8,7 @@ import {RouterModule} from '@angular/router'
 import {FormsModule} from '@angular/forms'
 import ScreenGames from './components/screen-games/component'
 import GameDetail from './components/game-detail/component'
-import GamesList from './components/games-list/component'
+import {GamesList, GamesDuration} from './components/games-list/component'
 import GamesListItem from './components/games-list-item/component'
 import NavigationBar from './components/navigation-bar/component'
 import {ScreenSettings} from './components/screen-settings/component'
@@ -74,6 +74,7 @@ import {VirtualRepeaterModule} from 'a2/components/virtual-repeater/module'
 		ScreenGames,
 		GameDetail,
 		GamesList,
+		GamesDuration,
 		GamesListItem,
 		DurationPipe,
 		GameDurationPipe,

@@ -4,7 +4,10 @@
 		[@search]="searchState"
 		#content
 	>
-		<span>{{ state?.name }}</span>
+		<span>
+			{{ state?.name }}
+			<games-duration [games]="games$|async"></games-duration>
+		</span>
 		<button
 			md-icon-button
 			class="search-button"
