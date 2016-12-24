@@ -4,7 +4,7 @@ import {
 	ChangeDetectionStrategy
 } from '@angular/core'
 import template from './template.html!text'
-import {GamesService} from 'a2/services/games'
+import {GamesService} from 'a2/services'
 import style from './style.css!text'
 
 @Component({

@@ -1,9 +1,8 @@
 import {Component} from '@angular/core'
 import template from './template.html!text'
 import style from './style.css!text'
-import {GamesService} from 'a2/services/games'
+import {GamesService, LayoutService} from 'a2/services'
 import {hasAssets} from 'a2/decorators'
-import {LayoutService} from 'a2/services/layout'
 
 @hasAssets
 @Component({

@@ -5,7 +5,7 @@ import {
 	EventEmitter,
 	ChangeDetectionStrategy,
 } from '@angular/core'
-import {GamesService} from 'a2/services/games'
+import {GamesService} from 'a2/services'
 import template from './template.html!text'
 import styles from './style.css!text'
 import moment from 'moment'

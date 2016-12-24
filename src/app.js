@@ -15,16 +15,10 @@ import {ScreenSettings} from './components/screen-settings/component'
 import {MenuGame, MenuGameTrigger} from './components/menu-game/component'
 import {MenuGameService} from './components/menu-game/service'
 import {ButtonFile} from './components/button-file/component'
-import {FileSaverService} from 'a2/services/FileSaver'
-import {BackupService} from 'a2/services/Backup'
-import {speakingurl} from 'a2/services/speakingurl'
-import {LayoutService} from 'a2/services/layout'
-import {DurationService} from 'a2/services/duration'
 
 import {MomentPipe} from 'a2/pipes/moment'
 import {DurationPipe, GameDurationPipe, SessionDurationPipe} from 'a2/pipes/duration'
 import {SlugPipe} from 'a2/pipes/slug'
-import {GamesService} from 'a2/services/games'
 import {StoreModule, combineReducers} from '@ngrx/store'
 import {compose} from '@ngrx/core/compose'
 import {localStorageSync} from 'ngrx-store-localstorage'
@@ -33,6 +27,7 @@ import {MaterialModule} from '@angular/material'
 import {GameSessionItem} from 'a2/components/game-session-item/component'
 import {GameStateIcon} from 'a2/components/game-state-icon/component'
 import {HotkeyModule} from 'angular2-hotkeys'
+import * as services from './services'
 
 import {VirtualRepeaterModule} from 'a2/components/virtual-repeater/module'
 
@@ -90,13 +85,8 @@ import {VirtualRepeaterModule} from 'a2/components/virtual-repeater/module'
 		MomentPipe,
 	],
 	providers: [
-		GamesService,
-		FileSaverService,
-		BackupService,
-		speakingurl,
-		LayoutService,
-		MenuGameService,
-		DurationService,
+		...Object.keys(services).map(key => services[key]),
+		MenuGameService
 	],
 	bootstrap: [Timer]
 })

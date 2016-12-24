@@ -1,6 +1,6 @@
 import {Pipe} from '@angular/core'
 import {Observable} from 'rxjs'
-import {DurationService} from 'a2/services/duration'
+import {DurationService} from 'a2/services'
 
 @Pipe({name: 'duration'})
 export class DurationPipe {

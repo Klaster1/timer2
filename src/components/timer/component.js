@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core'
 import template from './template.html!text'
-import {GamesService} from 'a2/services/games'
+import {GamesService} from 'a2/services'
 import style from './style.css!text'
 import {HotkeysService, Hotkey} from 'angular2-hotkeys'
 import {Router} from '@angular/router'

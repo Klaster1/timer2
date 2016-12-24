@@ -1,4 +1,4 @@
-import {speakingurl} from 'a2/services/speakingurl'
+import {speakingurl} from 'a2/services'
 import {Pipe} from '@angular/core'
 
 @Pipe({name: 'slug'})

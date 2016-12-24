@@ -17,7 +17,7 @@ import template from './template.html!text'
 import styles from './style.css!text'
 import {Observable, Subject, BehaviorSubject} from 'rxjs'
 import {HotkeysService, Hotkey} from 'angular2-hotkeys'
-import {DurationService} from 'a2/services/duration'
+import {DurationService} from 'a2/services'
 
 @Component({
 	selector: 'games-list',

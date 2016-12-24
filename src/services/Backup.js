@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core'
-import {FileSaverService} from 'a2/services/FileSaver'
-import {GamesService} from 'a2/services/games'
+import {FileSaverService, GamesService} from 'a2/services'
 
 @Injectable()
 export class BackupService {

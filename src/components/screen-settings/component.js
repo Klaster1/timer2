@@ -1,8 +1,7 @@
 import {Component} from '@angular/core'
 import template from './template.html!text'
 import style from './style.css!text'
-import {BackupService} from 'a2/services/Backup'
-import {GamesService} from 'a2/services/games'
+import {BackupService, GamesService} from 'a2/services'
 
 @Component({
 	selector: 'screen-settings',
