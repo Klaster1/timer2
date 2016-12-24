@@ -233,7 +233,7 @@
       }
     }
   },
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/Klaster1/timer2.git"
