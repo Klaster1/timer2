@@ -19,6 +19,7 @@ import {FileSaverService} from 'a2/services/FileSaver'
 import {BackupService} from 'a2/services/Backup'
 import {speakingurl} from 'a2/services/speakingurl'
 import {LayoutService} from 'a2/services/layout'
+import {DurationService} from 'a2/services/duration'
 
 import {MomentPipe} from 'a2/pipes/moment'
 import {DurationPipe, GameDurationPipe, SessionDurationPipe} from 'a2/pipes/duration'
@@ -94,6 +95,7 @@ import {VirtualRepeaterModule} from 'a2/components/virtual-repeater/module'
 		speakingurl,
 		LayoutService,
 		MenuGameService,
+		DurationService,
 	],
 	bootstrap: [Timer]
 })
