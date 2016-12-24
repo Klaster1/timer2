@@ -2,11 +2,8 @@ import {Component} from '@angular/core'
 import template from './template.html!text'
 import style from './style.css!text'
 import {GamesService, LayoutService} from 'a2/services'
-import {hasAssets} from 'a2/decorators'
 
-@hasAssets
 @Component({
-	moduleId: __moduleName,
 	selector: 'navigation-bar',
 	template,
 	styles: [style]

@@ -4,16 +4,25 @@ import {GamesService} from 'a2/services'
 import style from './style.css!text'
 import {HotkeysService, Hotkey} from 'angular2-hotkeys'
 import {Router} from '@angular/router'
+import {MdIconRegistry} from '@angular/material'
+import {DomSanitizer} from '@angular/platform-browser'
 
 @Component({
+	moduleId: __moduleName,
 	selector: 'timer',
 	template,
 	styles: [style],
 	encapsulation: ViewEncapsulation.None
 })
 export class Timer {
-	constructor(router: Router, gamesService: GamesService, hotkeys: HotkeysService) {
+	constructor(sanitizer: DomSanitizer, icons: MdIconRegistry, router: Router, gamesService: GamesService, hotkeys: HotkeysService) {
 		Object.assign(this, {router, gamesService, hotkeys})
+
+		const logoURL = __moduleName.replace(/[^\/]+$/, 'logo.svg')
+		const safeLogoURL = sanitizer.bypassSecurityTrustResourceUrl(logoURL)
+
+		icons.addSvgIcon('logo', safeLogoURL)
+
 		this.hotkeys.add([
 			new Hotkey(
 				'g g',
