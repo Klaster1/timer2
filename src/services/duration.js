@@ -54,6 +54,9 @@ export class DurationService {
 			.map(({data}) => data)
 			.take(1)
 	}
+	sessionDurationSync(session) {
+		return (session.stop || Date.now()) - session.start
+	}
 	gameDuration(game)  {
 		return this._postMessage({type: 'game', data: game})
 	}
