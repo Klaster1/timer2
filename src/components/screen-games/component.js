@@ -75,8 +75,12 @@ export default class ScreenGames {
 				return foundState || defaultState
 			})
 
+		const lastSessionStart = game => game.sessions.length
+			? game.sessions[game.sessions.length - 1].start
+			: Date.now()
+
 		const allGames$ = this.gamesService.games$
-			.map(games => games.slice().reverse())
+			.map(games => games.slice().sort((a, b) => lastSessionStart(b) - lastSessionStart(a)))
 
 		this.game$ = this.route.queryParams
 			.pluck('id')
