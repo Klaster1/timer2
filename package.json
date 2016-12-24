@@ -49,7 +49,6 @@
       "babel-plugin-transform-flow-strip-types": "npm:babel-plugin-transform-flow-strip-types@^6.14.0",
       "babel-preset-es2015": "npm:babel-preset-es2015@^6.16.0",
       "css": "github:systemjs/plugin-css@^0.1.32",
-      "hammerjs": "npm:hammerjs@^2.0.8",
       "material-design-icons-iconfont": "npm:material-design-icons-iconfont@^3.0.2",
       "moment": "npm:moment@^2.17.1",
       "ngrx-store-localstorage": "npm:ngrx-store-localstorage@^0.1.5",
