@@ -33,17 +33,21 @@
 		>
 			<md-icon>arrow_back</md-icon>
 		</button>
-		<md-input
-			tabindex="-1"
-			#input
-			(keyup.esc)="toggleSearch('visible')"
-			(blur)="toggleSearch('visible')"
-			placeholder="Search"
-			(input)="
-				doSearch($event.target.value);
-			"
+		<md-input-container
 		>
-		</md-input>
+			<input
+				type="search"
+				md-input
+				tabindex="-1"
+				#input
+				(keyup.esc)="toggleSearch('visible')"
+				(blur)="toggleSearch('visible')"
+				placeholder="Search"
+				(input)="
+					doSearch($event.target.value);
+				"
+			>
+		</md-input-container>
 	</div>	
 </md-toolbar>
 
