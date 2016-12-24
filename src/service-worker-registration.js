@@ -35,7 +35,7 @@ if ('serviceWorker' in navigator) {
 						}
 						break
 					case 'redundant':
-						notify({body: 'The installing service worker became redundant.'})
+						// notify({body: 'The installing service worker became redundant.'})
 						break
 				}
 			}
