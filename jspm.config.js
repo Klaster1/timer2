@@ -61,7 +61,7 @@ SystemJS.config({
     "@angular/core": "npm:@angular/core@2.4.0",
     "@angular/forms": "npm:@angular/forms@2.4.0",
     "@angular/http": "npm:@angular/http@2.3.0",
-    "@angular/material": "npm:@angular/material@2.0.0-alpha.11",
+    "@angular/material": "npm:@angular/material@2.0.0-beta.1",
     "@angular/platform-browser": "npm:@angular/platform-browser@2.4.0",
     "@angular/platform-browser-dynamic": "npm:@angular/platform-browser-dynamic@2.3.0",
     "@angular/router": "npm:@angular/router@3.4.0",
@@ -93,7 +93,7 @@ SystemJS.config({
     "path": "npm:jspm-nodelibs-path@0.2.1",
     "process": "npm:jspm-nodelibs-process@0.2.0",
     "reflect-metadata": "npm:reflect-metadata@0.1.8",
-    "rxjs": "npm:rxjs@5.0.1",
+    "rxjs": "npm:rxjs@5.0.2",
     "speakingurl": "npm:speakingurl@10.0.0",
     "stream": "npm:jspm-nodelibs-stream@0.2.0",
     "string_decoder": "npm:jspm-nodelibs-string_decoder@0.2.0",
@@ -719,18 +719,13 @@ SystemJS.config({
         "minimalistic-assert": "npm:minimalistic-assert@1.0.0"
       }
     },
-    "npm:@angular/material@2.0.0-alpha.11": {
-      "map": {
-        "@types/hammerjs": "npm:@types/hammerjs@2.0.33"
-      }
-    },
     "npm:angular2-hotkeys@0.5.0": {
       "map": {
         "mousetrap": "npm:mousetrap@1.6.0",
         "@types/mousetrap": "npm:@types/mousetrap@1.5.32"
       }
     },
-    "npm:rxjs@5.0.1": {
+    "npm:rxjs@5.0.2": {
       "map": {
         "symbol-observable": "npm:symbol-observable@1.0.4"
       }
