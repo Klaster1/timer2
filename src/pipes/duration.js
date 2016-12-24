@@ -1,25 +1,14 @@
 import {Pipe} from '@angular/core'
 import {Observable} from 'rxjs'
+import {DurationService} from 'a2/services/duration'
 
 @Pipe({name: 'duration'})
 export class DurationPipe {
-	transform(value) {
-		if (value <= 0) return
-
-		return ['h','m']
-		.map(function (part) {
-			switch (part) {
-				case 'h':
-					return ~~(value / 3600000)
-				case 'm':
-					return ~~((value % 3600000) / 60000)
-			}
-		})
-		.map(this.pad)
-		.join(':')
+	constructor(duration: DurationService) {
+		Object.assign(this, {duration})
 	}
-	pad(value) {
-		return (value || 0).toString().length === 1 ? '0' + value : value
+	transform(value) {
+		return this.duration.format(value)
 	}
 }
 
