@@ -1,5 +1,5 @@
 module.exports = {
 	host: 'tam.dev',
-	files: ['src/a2.bundle.js', 'src/vendor.bundle.js'],
+	files: ['dist/a2.bundle.js', 'dist/vendor.bundle.js'],
 	open: false
 }
