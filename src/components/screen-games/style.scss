@@ -4,7 +4,7 @@
 	overflow: hidden;
 }
 games-list {
-	will-change: transform;
+	will-change: left;
 }
 game-detail {
 	will-change: transform, opacity;
@@ -19,6 +19,5 @@ games-list, game-detail {
 		flex: 0 0 100%;
 		height: 100%;
 		max-width: none;
-		margin-left: -50%;
 	}
 }

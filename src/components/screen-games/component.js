@@ -26,7 +26,7 @@ import {HotkeysService, Hotkey} from 'angular2-hotkeys'
 				opacity: '1'
 			})),
 			state('opened-small', style({
-				transform: 'translateX(0%)',
+				transform: 'translateX(-100%)',
 				opacity: '1'
 			})),
 			state('void', style({
@@ -39,16 +39,16 @@ import {HotkeysService, Hotkey} from 'angular2-hotkeys'
 		]),
 		trigger('move', [
 			state('opened-big', style({
-				transform: 'translateX(0%)'
+				left: '0%'
 			})),
 			state('opened-small', style({
-				transform: 'translateX(-50%)'
+				left: '-100%'
 			})),
 			state('closed-big', style({
-				transform: 'translateX(50%)'
+				left: '25%'
 			})),
 			state('closed-small', style({
-				transform: 'translateX(50%)'
+				left: '0%'
 			})),
 			transition('* <=> *', [
 				animate(200)
