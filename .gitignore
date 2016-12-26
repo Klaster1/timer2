@@ -6,3 +6,4 @@ dist/*.bundle.*
 *.map
 *.log
 service-worker.js
+watchman.exe
