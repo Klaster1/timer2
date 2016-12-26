@@ -1,6 +1,9 @@
 @import 'jspm:@angular/material/core/style/_elevation';
+@import "jspm:a2/components/timer/theme";
 :host {
 	@include md-elevation(1);
+	$background: map-get($a2-app-theme, background);
+	background-color: md-color($background, card);
 	display: flex;
 	flex-direction: column;
 	position: relative;
