@@ -52,11 +52,8 @@ export const gamesReducer = (state = [], action) => {
 		case REMOVE_GAME:
 			return state.filter(game => game.id !== action.payload)
 		case RENAME_GAME:
-			return state.map(game => gameReducer(game, action))
 		case SET_GAME_STATE:
-			return state.map(game => gameReducer(game, action))
 		case START_GAME:
-			return state.map(game => gameReducer(game, action))
 		case STOP_GAME:
 			return state.map(game => gameReducer(game, action))
 		case IMPORT_GAMES:
