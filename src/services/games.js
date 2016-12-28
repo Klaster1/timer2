@@ -6,7 +6,7 @@ import {
 	ADD_GAME,
 	RENAME_GAME,
 	REMOVE_GAME,
-	SET_GAME_STATE,
+	SET_GAMES_STATE,
 	START_GAME,
 	STOP_GAME,
 	IMPORT_GAMES,
@@ -72,11 +72,12 @@ export class GamesService {
 			payload: game.id
 		})
 	}
-	setGameState(game, state) {
+	setGamesState(games = [], state) {
+		if (!Array.isArray(games)) games = [games]
 		this.store.dispatch({
-			type: SET_GAME_STATE,
+			type: SET_GAMES_STATE,
 			payload: {
-				id: game.id,
+				ids: games.map(game => game.id),
 				state: state
 			}
 		})

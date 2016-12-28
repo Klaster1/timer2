@@ -183,7 +183,7 @@ export default class ScreenGames {
 		this.gamesService.stopGame(game)
 	}
 	setGameState({game, state}) {
-		this.gamesService.setGameState(game, state)
+		this.gamesService.setGamesState(game, state)
 	}
 	openGame(game) {
 		const {queryParams} = this.route.snapshot
