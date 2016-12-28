@@ -144,6 +144,18 @@ export default class ScreenGames {
 					[],
 					`Set game state (${state.name})`
 				)
+			}),
+			...this.gamesService.states.map(state => {
+				return new Hotkey(
+					`m ${state.id[0]}`.toUpperCase(),
+					(e) => {
+						this.stateGames$.take(1).subscribe(game => {
+							if (game) this.setGameState({game, state: state.id})
+						})
+					},
+					[],
+					`Set games state (${state.name})`
+				)
 			})
 		]
 		this.hotkeys.add(this.keys)
