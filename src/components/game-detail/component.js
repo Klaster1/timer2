@@ -31,7 +31,7 @@ export default class GameDetail {
 			.map(value => value.slice().reverse())
 	}
 	ngOnChanges(changes) {
-		if (changes.game) {
+		if (changes.game && changes.game.currentValue) {
 			this._sessions.next(changes.game.currentValue.sessions || [])
 		}
 	}
