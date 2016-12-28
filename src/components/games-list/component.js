@@ -121,18 +121,34 @@ export class GamesDuration {
 	@Input() games
 	constructor(cdr: ChangeDetectorRef, durationService: DurationService) {
 		Object.assign(this, {cdr, durationService})
+		this.games$ = new Subject
+		this.interval$ = Observable.interval(60 * 1000).startWith(0)
+		this.cdr.detach()
+	}
+	ngOnInit() {
+		this.subscription = Observable.combineLatest(
+			this.games$,
+			this.interval$,
+			games => games
+		)
+		.flatMap(games => this.durationService.gamesDuration(games))
+		.map(duration => this.durationService.format(duration))
+		.map(value => value ? `(${value})` : '')
+		.do(value => {
+			this.duration = value
+			this.cdr.markForCheck()
+			this.cdr.detectChanges()
+		})
+		.subscribe()
+	}
+	ngOnDestroy() {
+		this.subscription.unsubscribe()
+		this.games$.unsubscribe()
+		this.subscription = this.games$ = this.interval$ = null
 	}
 	ngOnChanges(changes) {
 		if ('games' in changes && changes.games.currentValue) {
-			this.durationService.gamesDuration(changes.games.currentValue)
-			.map(duration => this.durationService.format(duration))
-			.map(value => value ? `(${value})` : '')
-			.do(value => {
-				this.duration = value
-				this.cdr.markForCheck()
-				this.cdr.detectChanges()
-			})
-			.subscribe()
+			this.games$.next(changes.games.currentValue)
 		}
 	}
 }
